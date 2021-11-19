@@ -1,0 +1,5 @@
+..gpg
+node_modules
+.gpg
+.env
+.vscode
