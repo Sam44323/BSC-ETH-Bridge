@@ -7,5 +7,5 @@ test
 .solhintignore
 .env.example
 artifacts
-cache
 typechain
+cache
