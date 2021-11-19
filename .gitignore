@@ -6,3 +6,6 @@ node_modules
 test
 .solhintignore
 .env.example
+artifacts
+cache
+typechain
