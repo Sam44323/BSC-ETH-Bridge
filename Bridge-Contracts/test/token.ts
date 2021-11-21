@@ -15,6 +15,7 @@ describe("Token", function () {
     Token = await ethers.getContractFactory("TokenBSC");
     token = await Token.deploy();
     [owner, addr1, addr2] = await ethers.getSigners();
+    token.mint(owner.address, 1000);
   });
 
   describe("Admin Checker Tests", () => {
@@ -28,5 +29,9 @@ describe("Token", function () {
     });
   });
 
-  describe("Token transaction checker", () => {});
+  describe("Token transaction checker", () => {
+    it("Check the initial minted token Balance for owner", async () => {
+      expect(await token.balanceOf(owner.address)).to.equal(1000);
+    });
+  });
 });
