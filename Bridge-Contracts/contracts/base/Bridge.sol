@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-// the base implementation contract for the bridge
+// the base implementation contract for the bridge-contract
 
 contract Bridge {
     address public admin;

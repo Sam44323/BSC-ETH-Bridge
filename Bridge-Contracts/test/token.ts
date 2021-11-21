@@ -1,7 +1,7 @@
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import { Token } from "../typechain/Token";
+import { Token } from "../types/Token";
 
 describe("Token", function () {
   // common variables for testing a token-contract
@@ -27,4 +27,6 @@ describe("Token", function () {
       expect(await token.admin()).to.equal(addr1.address);
     });
   });
+
+  describe("Token transaction checker", () => {});
 });

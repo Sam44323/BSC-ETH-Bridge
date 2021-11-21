@@ -23,10 +23,6 @@ contract Token is ERC20, Ownable {
         _mint(to, amount);
     }
 
-    function burn(address owner, uint256 amount) external onlyAdmin {
-        _burn(owner, amount);
-    }
-
     modifier onlyAdmin() {
         require(msg.sender == admin, "Only Admin can access this method");
         _;
