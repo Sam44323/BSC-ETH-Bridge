@@ -8,3 +8,5 @@ node_modules
 artifacts
 typechain
 cache
+yarn-error.log
+yarn.lock
