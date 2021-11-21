@@ -79,5 +79,21 @@ describe("Bridge-Contract testing", function () {
       expect(await ethToken.balanceOf(addr1.address)).to.be.equal(90);
       expect(await bscToken.balanceOf(addr1.address)).to.be.equal(110);
     });
+
+    it("Burn on BSC and Mint on ETH", async () => {
+      // addr1 is burning some eth token
+      await bscToken.connect(addr1).approve(bscBridge.address, 10);
+      await bscBridge.connect(addr1).burn(10);
+
+      // the owner is now minting some bsc token to the address equivalent to the eth token they burnt
+
+      await ethToken.connect(owner).approve(ethBridge.address, 10);
+      await ethBridge
+        .connect(owner)
+        .mint(addr1.address, 10, await (await bscBridge.getNonce()).toNumber());
+
+      expect(await bscToken.balanceOf(addr1.address)).to.be.equal(90);
+      expect(await ethToken.balanceOf(addr1.address)).to.be.equal(110);
+    });
   });
 });
