@@ -62,4 +62,6 @@ describe("Bridge-Contract testing", function () {
       expect(balance).to.be.equal("91");
     });
   });
+
+  describe("Cross testing for bridge", () => {});
 });
