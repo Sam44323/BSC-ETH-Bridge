@@ -12,6 +12,7 @@ describe("Bridge-Contract testing", function () {
     owner: SignerWithAddress,
     addr1: SignerWithAddress,
     addr2: SignerWithAddress;
+
   beforeEach(async () => {
     // deploying tokens for the bscBridge and the ethBridge
     bscToken = await (await ethers.getContractFactory("TokenBSC")).deploy();
@@ -36,23 +37,29 @@ describe("Bridge-Contract testing", function () {
     await bscToken.connect(owner).transfer(addr1.address, 100);
   });
 
-  it("Test the burning on ETH bridge contract", async () => {
-    // burning some tokens for the eth token
+  describe("Individual testing for Burning and Minting", () => {
+    it("Test the burning on ETH bridge contract", async () => {
+      // burning some tokens for the eth token
 
-    // approving the bridge contract to have a transaction using the tokens
-    await ethToken.connect(addr1).approve(ethBridge.address, 10);
-    await ethBridge.connect(addr1).burn(10);
-    const balance = await (await ethToken.balanceOf(addr1.address)).toString();
-    // checking the balance of the eth token for addr1
-    expect(balance).to.be.equal("90");
-    // expect(await ethToken.balanceOf(addr1.address)).to.be.equal(90);
-  });
+      // approving the bridge contract to have a transaction using the tokens
+      await ethToken.connect(addr1).approve(ethBridge.address, 10);
+      await ethBridge.connect(addr1).burn(10);
+      const balance = await (
+        await ethToken.balanceOf(addr1.address)
+      ).toString();
+      // checking the balance of the eth token for addr1
+      expect(balance).to.be.equal("90");
+      // expect(await ethToken.balanceOf(addr1.address)).to.be.equal(90);
+    });
 
-  it("Test the burning on BSC bridge contract", async () => {
-    await bscToken.connect(addr1).approve(bscBridge.address, 9);
-    await bscBridge.connect(addr1).burn(9);
-    const balance = await (await bscToken.balanceOf(addr1.address)).toString();
+    it("Test the burning on BSC bridge contract", async () => {
+      await bscToken.connect(addr1).approve(bscBridge.address, 9);
+      await bscBridge.connect(addr1).burn(9);
+      const balance = await (
+        await bscToken.balanceOf(addr1.address)
+      ).toString();
 
-    expect(balance).to.be.equal("91");
+      expect(balance).to.be.equal("91");
+    });
   });
 });
