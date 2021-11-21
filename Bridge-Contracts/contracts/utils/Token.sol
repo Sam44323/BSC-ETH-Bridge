@@ -7,6 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract Token is ERC20, Ownable {
     address public admin;
 
+    // constructor for creating a new token and setting the admin for the Token
     constructor(string memory name, string memory symbol) ERC20(name, symbol) {
         admin = msg.sender;
     }
