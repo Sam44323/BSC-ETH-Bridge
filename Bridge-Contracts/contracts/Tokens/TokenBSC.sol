@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../utils/Token.sol";
+import "../base/Token.sol";
 
 contract TokenBSC is Token {
     // creating a token for BSC
