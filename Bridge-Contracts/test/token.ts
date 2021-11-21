@@ -17,7 +17,14 @@ describe("Token", function () {
     [owner, addr1, addr2] = await ethers.getSigners();
   });
 
-  it("Admin should be the deployer", async function () {
-    expect(await token.admin()).to.equal(owner.address);
+  describe("Admin Checker Tests", () => {
+    it("Admin should be the deployer", async () => {
+      expect(await token.admin()).to.equal(owner.address);
+    });
+
+    it("Update the admin for the token contract", async () => {
+      await token.updateAdmin(addr1.address);
+      expect(await token.admin()).to.equal(addr1.address);
+    });
   });
 });
