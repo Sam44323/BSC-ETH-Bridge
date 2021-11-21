@@ -33,5 +33,12 @@ describe("Token", function () {
     it("Check the initial minted token Balance for owner", async () => {
       expect(await token.balanceOf(owner.address)).to.equal(1000);
     });
+
+    it("Transfer token from one address to the other", async () => {
+      await token.connect(owner).transfer(addr1.address, 10);
+
+      expect(await token.balanceOf(owner.address)).to.equal(990);
+      expect(await token.balanceOf(addr1.address)).to.equal(10);
+    });
   });
 });
