@@ -4,7 +4,7 @@ import { ethers } from "hardhat";
 import { Token } from "../typechain/Token";
 
 describe("Token", function () {
-  // common variables for testing a token
+  // common variables for testing a token-contract
   let Token,
     token: Token,
     owner: SignerWithAddress,
