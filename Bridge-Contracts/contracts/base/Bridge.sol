@@ -10,4 +10,10 @@ contract Bridge {
     IERC20 public token;
     uint256 public nonce;
     mapping(uint256 => bool) public processedTransactionNonces;
+
+    // initializing the bridge with the token contract and the admin address
+    constructor(address _token) {
+        admin = msg.sender;
+        token = IERC20(_token); // getting the token from the IERC interface
+    }
 }
