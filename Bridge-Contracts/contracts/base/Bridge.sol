@@ -51,6 +51,11 @@ contract Bridge {
 
     // function for minting some toknes the reciver
 
+    function getNonce() public view returns (uint256) {
+        require(msg.sender == admin, "Only admin can mint tokens");
+        return nonce;
+    }
+
     function mint(
         address reciever,
         uint256 amount,
@@ -64,7 +69,7 @@ contract Bridge {
         ); // checking if the nonce is already processed
 
         processedTransactionNonces[otherChainNonce] = true;
-        token.transfer(reciever, amount); // minting some tokens for the reciever
+        token.transferFrom(msg.sender, reciever, amount); // minting some tokens for the reciever
         emit Transfer(
             msg.sender,
             reciever,

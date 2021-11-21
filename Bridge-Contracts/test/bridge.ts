@@ -63,5 +63,21 @@ describe("Bridge-Contract testing", function () {
     });
   });
 
-  describe("Cross testing for bridge", () => {});
+  describe("Cross testing for bridge", () => {
+    it("Burn on ETH and Mint on BSC", async () => {
+      // addr1 is burning some eth token
+      await ethToken.connect(addr1).approve(ethBridge.address, 10);
+      await ethBridge.connect(addr1).burn(10);
+
+      // the owner is now minting some bsc token to the address equivalent to the eth token they burnt
+
+      await bscToken.connect(owner).approve(bscBridge.address, 10);
+      await bscBridge
+        .connect(owner)
+        .mint(addr1.address, 10, await (await ethBridge.getNonce()).toNumber());
+
+      expect(await ethToken.balanceOf(addr1.address)).to.be.equal(90);
+      expect(await bscToken.balanceOf(addr1.address)).to.be.equal(110);
+    });
+  });
 });
