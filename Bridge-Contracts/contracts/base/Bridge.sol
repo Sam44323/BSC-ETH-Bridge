@@ -9,12 +9,16 @@ contract Bridge {
     address public admin;
     IERC20 public immutable token;
     uint256 public nonce;
-    mapping(uint256 => bool) public processedTransactionNonces;
+    mapping(uint256 => bool) public processedTransactionNonces; // for storing the nonce process status using boolean and mapping
 
     enum Step {
         Burn,
         Mint
     }
+
+    /*
+     A custom event for bridge which will be emitted when a transaction is processed(burn/mint)
+     */
 
     event Transfer(
         address indexed from,
@@ -33,7 +37,7 @@ contract Bridge {
 
     // burn some amount of tokens
     function burn(uint256 _amount) public {
-        token.transfer(address(this), _amount); // locking the tokens in the contract
+        token.transfer(address(this), _amount); // locking the tokens from the sender address in the contract
         emit Transfer(
             msg.sender,
             address(this),
@@ -45,18 +49,22 @@ contract Bridge {
         nonce++;
     }
 
+    // function for minting some toknes the reciver
+
     function mint(
         address reciever,
         uint256 amount,
         uint256 otherChainNonce
     ) external {
         require(msg.sender == admin, "Only admin can mint tokens");
+
         require(
             processedTransactionNonces[otherChainNonce] == false,
             "transfer already processed"
-        );
+        ); // checking if the nonce is already processed
+
         processedTransactionNonces[otherChainNonce] = true;
-        token.transfer(reciever, amount);
+        token.transfer(reciever, amount); // minting some tokens for the reciever
         emit Transfer(
             msg.sender,
             reciever,
