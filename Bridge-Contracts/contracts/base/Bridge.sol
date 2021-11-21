@@ -37,7 +37,7 @@ contract Bridge {
 
     // burn some amount of tokens
     function burn(uint256 _amount) public {
-        token.transfer(address(this), _amount); // locking the tokens from the sender address in the contract
+        token.transferFrom(msg.sender, address(this), _amount); // locking the tokens from the sender address in the contract
         emit Transfer(
             msg.sender,
             address(this),
