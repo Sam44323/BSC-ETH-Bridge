@@ -2,13 +2,12 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "../base/IToken.sol";
 
 // the base implementation contract for the bridge
 
 contract Bridge {
     address public admin;
-    IToken public immutable token;
+    IERC20 public immutable token;
     uint256 public nonce;
     mapping(uint256 => bool) public processedTransactionNonces;
 
@@ -29,15 +28,15 @@ contract Bridge {
     // initializing the bridge with the token contract and the admin address
     constructor(address _token) {
         admin = msg.sender;
-        token = IToken(_token); // getting the token from the IERC interface
+        token = IERC20(_token); // getting the token from the IERC interface
     }
 
     // burn some amount of tokens
-    function burn(address to, uint256 _amount) public {
-        token.burn(msg.sender, _amount);
+    function burn(uint256 _amount) public {
+        token.transfer(address(this), _amount); // locking the tokens in the contract
         emit Transfer(
             msg.sender,
-            to,
+            address(this),
             _amount,
             block.timestamp,
             nonce,
