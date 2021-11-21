@@ -40,5 +40,14 @@ describe("Token", function () {
       expect(await token.balanceOf(owner.address)).to.equal(990);
       expect(await token.balanceOf(addr1.address)).to.equal(10);
     });
+
+    it("Transfer token from one user to the other", async () => {
+      await token.connect(owner).transfer(addr1.address, 10);
+
+      await token.connect(addr1).transfer(addr2.address, 5);
+
+      expect(await token.balanceOf(addr1.address)).to.equal(5);
+      expect(await token.balanceOf(addr2.address)).to.equal(5);
+    });
   });
 });
