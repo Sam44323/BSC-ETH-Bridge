@@ -1,7 +1,7 @@
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import { Token } from "../types/Token";
+import { Token } from "../typechain/Token";
 
 describe("Token", function () {
   // common variables for testing a token-contract
