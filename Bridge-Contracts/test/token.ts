@@ -34,7 +34,7 @@ describe("Token", function () {
       expect(await token.balanceOf(owner.address)).to.equal(1000);
     });
 
-    it("Transfer token from one address to the other", async () => {
+    it("Transfer token from owner address to another address", async () => {
       await token.connect(owner).transfer(addr1.address, 10);
 
       expect(await token.balanceOf(owner.address)).to.equal(990);
