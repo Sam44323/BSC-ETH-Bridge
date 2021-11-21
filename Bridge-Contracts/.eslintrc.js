@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     browser: false,
     es2021: true,
@@ -20,5 +21,6 @@ module.exports = {
       "error",
       { ignores: ["modules"] },
     ],
+    ignorePatterns: ["src/**/*.test.ts", "src/frontend/generated/*"],
   },
 };
