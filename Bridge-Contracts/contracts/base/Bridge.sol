@@ -44,4 +44,26 @@ contract Bridge {
         );
         nonce++;
     }
+
+    function mint(
+        address reciever,
+        uint256 amount,
+        uint256 otherChainNonce
+    ) external {
+        require(msg.sender == admin, "Only admin can mint tokens");
+        require(
+            processedTransactionNonces[otherChainNonce] == false,
+            "transfer already processed"
+        );
+        processedTransactionNonces[otherChainNonce] = true;
+        token.transfer(reciever, amount);
+        emit Transfer(
+            msg.sender,
+            reciever,
+            amount,
+            block.timestamp,
+            otherChainNonce,
+            Step.Mint
+        );
+    }
 }
