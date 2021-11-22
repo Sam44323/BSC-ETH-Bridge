@@ -73,7 +73,8 @@ contract Bridge {
         ); // checking if the nonce is already processed
 
         processedTransactionNonces[otherChainNonce] = true;
-        token.transferFrom(msg.sender, reciever, amount); // minting some tokens for the reciever
+        token.approve(address(this), amount); // approving the amount of tokens to be minted
+        token.transferFrom(address(this), reciever, amount); // minting some tokens for the reciever
         emit Transfer(
             msg.sender,
             reciever,
