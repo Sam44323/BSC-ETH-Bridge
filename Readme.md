@@ -4,9 +4,9 @@
 
 ---
 
-## **Tech-stack**
+# **Tech-stack**
 
-### Bridge-Contracts Folder
+### **Bridge-Contracts Folder**
 
 ---
 
@@ -21,5 +21,35 @@
 - **Ethers**
 - **Waffle**
 - **Solhint**
+
+---
+
+# **Scripts**
+
+_Wanna contribute? Cool! Fork the repo and run the following commands for the following folders based on which part you want to contribute for_
+
+---
+
+### **Bridge-Contracts Folder**
+
+---
+
+**Install the dependencies**
+
+```bash
+yarn
+```
+
+**Compile the contracts**
+
+```bash
+yarn compile
+```
+
+**Run the test suite**
+
+```bash
+yarn test
+```
 
 ---
