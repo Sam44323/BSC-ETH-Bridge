@@ -52,4 +52,10 @@ yarn compile
 yarn test
 ```
 
+_Testing a specific file_
+
+```bash
+yarn test test/<test-file-name>
+```
+
 ---
