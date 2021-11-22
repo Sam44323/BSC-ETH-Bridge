@@ -73,5 +73,16 @@ describe("Bridge-Contract testing", function () {
         await (await ethToken.balanceOf(ethBridge.address)).toString()
       ).to.be.equal("990");
     });
+
+    it("Test the minting on BSC bridge contract", async () => {
+      await bscToken.approve(bscBridge.address, 10);
+      const ethNonce = await ethBridge.getNonce();
+      await bscBridge.mint(addr1.address, 10, ethNonce);
+
+      expect(await bscToken.balanceOf(addr1.address)).to.be.equal("110");
+      expect(
+        await (await bscToken.balanceOf(bscBridge.address)).toString()
+      ).to.be.equal("990");
+    });
   });
 });
