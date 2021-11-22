@@ -49,6 +49,7 @@ describe("Bridge-Contract testing", function () {
       ).toString();
       // checking the balance of the eth token for addr1
       expect(balance).to.be.equal("90");
+      expect(await ethToken.balanceOf(ethBridge.address)).to.be.equal("1010");
     });
 
     it("Test the burning on BSC bridge contract", async () => {
@@ -59,6 +60,7 @@ describe("Bridge-Contract testing", function () {
       ).toString();
 
       expect(balance).to.be.equal("91");
+      expect(await bscToken.balanceOf(bscBridge.address)).to.be.equal("1009");
     });
   });
 });
