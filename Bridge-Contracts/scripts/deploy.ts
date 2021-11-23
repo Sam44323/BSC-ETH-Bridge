@@ -5,25 +5,26 @@ import { ethers, run } from "hardhat";
  npx hardhat verify --network <network-name> <contract-address> --contract "contracts/Tokens/TokenETH.sol:TokenETH(contract file path)" 
  */
 
-async function main() {
-  const ETHToken = await ethers.getContractFactory("TokenETH");
-  const ethToken = await ETHToken.deploy();
-
-  console.log("Deploying...");
-  await ethToken.deployed();
+const deployToken = async (token_name: string) => {
+  const Token = await ethers.getContractFactory(token_name);
+  const token = await Token.deploy();
 
   try {
-    console.log("Verifying TokenETH...");
+    console.log(`Verifying ${token_name}...`);
     await run("verify:verify", {
-      address: ethToken.address,
-      contract: "contracts/Tokens/TokenETH.sol:TokenETH",
+      address: token.address,
+      contract: `contracts/Tokens/${token_name}.sol:${token_name}`,
       constructorArguments: [],
     });
   } catch (e: any) {
     console.error(e.message);
   }
 
-  console.log("ETH Token deployed to:", ethToken.address);
+  console.log(`${token_name} deployed to: `, token.address);
+};
+
+async function main() {
+  await deployToken("TokenETH");
 }
 
 main()

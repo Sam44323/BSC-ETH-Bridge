@@ -5,5 +5,5 @@ import "../base/Token.sol";
 
 contract TokenBSC is Token {
     // creating a token for BSC
-    constructor() Token("BSC Token", "BTK") {}
+    constructor() Token("BSC Token", "BTK", 1000000000000000000000) {}
 }
