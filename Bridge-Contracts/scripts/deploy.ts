@@ -1,7 +1,7 @@
 import { ethers, run } from "hardhat";
 
 /*
- If you have contracts with similar bytecodes, you can use the scripts in this format for verification
+ If you have contracts with similar byte-codes, you can use the scripts in this format for verification
  npx hardhat verify --network <network-name> <contract-address> --contract "contracts/Tokens/TokenETH.sol:TokenETH(contract file path)" 
  */
 
