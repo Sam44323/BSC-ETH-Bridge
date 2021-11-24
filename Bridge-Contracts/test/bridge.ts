@@ -29,12 +29,12 @@ describe("Bridge-Contract testing", function () {
     [owner, addr1, addr2] = await ethers.getSigners();
 
     // minting some tokens for the bridges
-    await ethToken.mint(ethBridge.address, 1000);
-    await bscToken.mint(bscBridge.address, 1000);
+    await ethToken.transfer(ethBridge.address, 1000);
+    await bscToken.transfer(bscBridge.address, 1000);
 
     // transferring some tokens for the eth token and the bsc token to addr1
-    await ethToken.mint(addr1.address, 100);
-    await bscToken.mint(addr1.address, 100);
+    await ethToken.transfer(addr1.address, 100);
+    await bscToken.transfer(addr1.address, 100);
   });
 
   describe("Individual testing for Burning and Minting", () => {
