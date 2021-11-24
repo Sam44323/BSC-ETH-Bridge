@@ -32,7 +32,7 @@ const deployBridgeContracts = async (name: string, token_address: string) => {
     await run("verify:verify", {
       address: bridge.address,
       contract: `contracts/bridge/${name}.sol:${name}`,
-      constructorArguments: [],
+      constructorArguments: [token_address],
     });
   } catch (e: any) {
     console.error(e.message);
@@ -42,11 +42,12 @@ const deployBridgeContracts = async (name: string, token_address: string) => {
 };
 
 async function main() {
-  // await deployToken("TokenETH");
-  // await deployToken("TokenBSC");
+  // run the scripts one by one
+  await deployToken("TokenETH");
+  await deployToken("TokenBSC");
 
   await deployBridgeContracts("BridgeETH", process.env.ETK_Address!);
-  // await deployBridgeContracts("BridgeBSC", process.env.BTK_Address!);
+  await deployBridgeContracts("BridgeBSC", process.env.BTK_Address!);
 }
 
 main()

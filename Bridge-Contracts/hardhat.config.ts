@@ -30,7 +30,7 @@ const config: HardhatUserConfig = {
     currency: "USD",
   },
   etherscan: {
-    apiKey: process.env.ETHERSCAN_API_KEY,
+    apiKey: process.env.ETHERSCAN_API_KEY, // replace it with BSCSCAN_API_KEY when verifiying on binance
   },
 };
 
