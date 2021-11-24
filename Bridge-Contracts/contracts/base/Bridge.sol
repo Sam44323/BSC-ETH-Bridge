@@ -74,7 +74,7 @@ contract Bridge {
 
         processedTransactionNonces[otherChainNonce] = true;
         token.approve(address(this), amount); // approving the amount of tokens to be minted
-        token.transferFrom(address(this), reciever, amount); // minting some tokens for the reciever
+        token.transferFrom(address(this), reciever, amount * 10**18); // minting some tokens for the reciever
         emit Transfer(
             msg.sender,
             reciever,
