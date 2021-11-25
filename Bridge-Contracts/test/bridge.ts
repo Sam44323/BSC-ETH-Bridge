@@ -4,8 +4,7 @@ import { ethers } from "hardhat";
 import { BridgeETH, BridgeBSC, Bridge, TokenETH, TokenBSC } from "../typechain";
 
 describe("Bridge-Contract testing", function () {
-  let BridgeRoot: Bridge,
-    bscBridge: BridgeBSC,
+  let bscBridge: BridgeBSC,
     ethBridge: BridgeETH,
     ethToken: TokenETH,
     bscToken: TokenBSC,
