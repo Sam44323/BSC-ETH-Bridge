@@ -81,4 +81,41 @@ describe("Bridging from ETH to BSC and vice-versa", () => {
 
     expect(bscUserBalance).to.be.equal("110");
   });
+
+  it("Bridge from BSC to ETH", async () => {
+    /*
+    Burning the BTK token on binance chain!
+    */
+    await bscToken.connect(addr1).approve(bscBridge.address, 10);
+    await bscBridge.connect(addr1).burn(10);
+
+    bscContractBalance = (
+      await bscToken.balanceOf(bscBridge.address)
+    ).toString();
+    bscUserBalance = (await bscToken.balanceOf(addr1.address)).toString();
+
+    console.log(
+      `----> Value of BSC bridge contract after locking the value ${bscContractBalance} \n`
+    );
+    console.log(
+      `----> Value of BTK for  addr1 after burning on BSC bridge ${bscUserBalance} \n`
+    );
+
+    expect(bscContractBalance).to.be.equal("1010");
+    expect(bscUserBalance).to.be.equal("90");
+
+    /*
+    Minting the ETK token equal amount to on ethereum chain!
+    */
+    const chainNonce = await bscBridge.getNonce();
+    await ethBridge.connect(owner).mint(addr1.address, 10, chainNonce);
+
+    ethUserBalance = (await ethToken.balanceOf(addr1.address)).toString();
+
+    console.log(
+      `----> Value of ETK for addr1 after minting on ETH bridge ${ethUserBalance} \n`
+    );
+
+    expect(ethUserBalance).to.be.equal("110");
+  });
 });
