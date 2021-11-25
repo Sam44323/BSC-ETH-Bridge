@@ -16,8 +16,10 @@ describe("Bridging from ETH to BSC and vice-versa", () => {
     owner: SignerWithAddress,
     addr1: SignerWithAddress,
     addr2: SignerWithAddress,
-    contractBalance,
-    userBalance;
+    ethContractBalance,
+    bscContractBalance,
+    ethUserBalance,
+    bscUserBalance;
 
   beforeEach(async () => {
     [owner, addr1, addr2] = await ethers.getSigners();
@@ -50,17 +52,19 @@ describe("Bridging from ETH to BSC and vice-versa", () => {
     await ethToken.connect(addr1).approve(ethBridge.address, 10);
     await ethBridge.connect(addr1).burn(10);
 
-    contractBalance = (await ethToken.balanceOf(ethBridge.address)).toString();
-    userBalance = (await ethToken.balanceOf(addr1.address)).toString();
+    ethContractBalance = (
+      await ethToken.balanceOf(ethBridge.address)
+    ).toString();
+    ethUserBalance = (await ethToken.balanceOf(addr1.address)).toString();
 
     console.log(
-      `----> Value of ETH bridge contract after locking the value ${contractBalance} \n`
+      `----> Value of ETH bridge contract after locking the value ${ethContractBalance} \n`
     );
     console.log(
-      `----> Value of addr1 contract after burning on ETH bridge ${userBalance} \n`
+      `----> Value of addr1 contract after burning on ETH bridge ${ethUserBalance} \n`
     );
 
-    expect(contractBalance).to.be.equal("1010");
-    expect(userBalance).to.be.equal("90");
+    expect(ethContractBalance).to.be.equal("1010");
+    expect(ethUserBalance).to.be.equal("90");
   });
 });
