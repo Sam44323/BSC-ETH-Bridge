@@ -15,7 +15,9 @@ describe("Bridging from ETH to BSC and vice-versa", () => {
     bscToken: TokenBSC,
     owner: SignerWithAddress,
     addr1: SignerWithAddress,
-    addr2: SignerWithAddress;
+    addr2: SignerWithAddress,
+    contractBalance,
+    userBalance;
 
   beforeEach(async () => {
     [owner, addr1, addr2] = await ethers.getSigners();
@@ -48,15 +50,17 @@ describe("Bridging from ETH to BSC and vice-versa", () => {
     await ethToken.connect(addr1).approve(ethBridge.address, 10);
     await ethBridge.connect(addr1).burn(10);
 
+    contractBalance = (await ethToken.balanceOf(ethBridge.address)).toString();
+    userBalance = (await ethToken.balanceOf(addr1.address)).toString();
+
     console.log(
-      `----> Value of ETH bridge contract after locking the value ${(
-        await ethToken.balanceOf(ethBridge.address)
-      ).toString()} \n`
+      `----> Value of ETH bridge contract after locking the value ${contractBalance} \n`
     );
     console.log(
-      `----> Value of addr1 contract after burning on ETH bridge ${(
-        await ethToken.balanceOf(addr1.address)
-      ).toString()} \n`
+      `----> Value of addr1 contract after burning on ETH bridge ${userBalance} \n`
     );
+
+    expect(contractBalance).to.be.equal("1010");
+    expect(userBalance).to.be.equal("90");
   });
 });
