@@ -115,7 +115,6 @@ describe("Bridging from ETH to BSC and vice-versa", () => {
     console.log(
       `----> Value of ETK for addr1 after minting on ETH bridge ${ethUserBalance} \n`
     );
-
     expect(ethUserBalance).to.be.equal("110");
   });
 });
