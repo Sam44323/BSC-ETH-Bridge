@@ -39,13 +39,24 @@ describe("Bridging from ETH to BSC and vice-versa", () => {
     // transferring some tokens for the eth token and the bsc token to addr1
     await ethToken.transfer(addr1.address, 100);
     await bscToken.transfer(addr2.address, 100);
-
-    console.log((await ethToken.balanceOf(ethBridge.address)).toString());
-    console.log((await bscToken.balanceOf(bscBridge.address)).toString());
-
-    console.log((await ethToken.balanceOf(addr1.address)).toString());
-    console.log((await bscToken.balanceOf(addr2.address)).toString());
   });
 
-  it("Bridge from ETH to BSC", async () => {});
+  it("Bridge from ETH to BSC", async () => {
+    /*
+    Burning the ETK token on ethereum!
+    */
+    await ethToken.connect(addr1).approve(ethBridge.address, 10);
+    await ethBridge.connect(addr1).burn(10);
+
+    console.log(
+      `----> Value of ETH bridge contract after locking the value ${(
+        await ethToken.balanceOf(ethBridge.address)
+      ).toString()} \n`
+    );
+    console.log(
+      `----> Value of addr1 contract after burning on ETH bridge ${(
+        await ethToken.balanceOf(addr1.address)
+      ).toString()} \n`
+    );
+  });
 });
