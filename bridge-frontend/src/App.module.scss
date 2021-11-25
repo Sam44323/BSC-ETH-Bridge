@@ -1,18 +1,19 @@
 .App {
   .HeaderContainer {
-    border: 1px solid whitesmoke;
+    border: 3px solid #fff;
     width: 30%;
     margin: 0 auto;
     margin-top: 3rem;
-    border-radius: 30px;
+    border-radius: 10px;
     transition: 0.7s ease-in-out;
+    background-color: #161e54;
     &:hover {
       transform: scale(1.1);
       cursor: default;
     }
     h1 {
       text-align: center;
-      color: white;
+      color: #ff9b6a;
       line-height: 30px;
     }
   }
