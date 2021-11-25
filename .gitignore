@@ -1,5 +1,6 @@
 ..gpg
 node_modules
+build
 .gpg
 .env
 .vscode
