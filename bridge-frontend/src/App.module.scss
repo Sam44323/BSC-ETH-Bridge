@@ -1,0 +1,19 @@
+.App {
+  .HeaderContainer {
+    border: 1px solid whitesmoke;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 3rem;
+    border-radius: 30px;
+    transition: 0.7s ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+      cursor: default;
+    }
+    h1 {
+      text-align: center;
+      color: white;
+      line-height: 30px;
+    }
+  }
+}
