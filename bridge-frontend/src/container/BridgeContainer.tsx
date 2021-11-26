@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../styles/container/BridgeContainer.module.scss";
 import Dropdown from "../components/Dropdown";
 import { binance, ethereum } from "../assets/index";
+import Input from "../components/Input";
 
 const BridgeContainer: React.FC = () => {
   const [currValue, setCurrValue] = React.useState<{
