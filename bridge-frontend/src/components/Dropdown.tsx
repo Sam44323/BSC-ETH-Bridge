@@ -13,6 +13,18 @@ interface SwapContainerProps {
   toggleDropdown: (side: "left" | "right") => void;
 }
 
+/**
+ *
+ * @param props img: image of the swapper container to be displayed
+ * @param props open: whether the dropdown is open or not
+ * @param props value: value of the swapper container
+ * @param props side: side of the swapper container (left or right)
+ * @param props valueChanger: function to be called when the value of the swapper container is changed
+ * @param props toggleDropdown: function to be called when the dropdown is toggled
+ *
+ * @returns a custom dropdown swapper component configured with the given props
+ */
+
 const SwapContainer: React.FC<SwapContainerProps> = (props) => {
   return (
     <div className={styles.SwapContainer}>
