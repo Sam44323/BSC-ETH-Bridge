@@ -3,6 +3,7 @@ import styles from "../styles/container/BridgeContainer.module.scss";
 import Dropdown from "../components/Dropdown";
 import { binance, ethereum } from "../assets/index";
 import Input from "../components/Input";
+import Button from "../components/Button";
 
 const BridgeContainer: React.FC = () => {
   const [currValue, setCurrValue] = React.useState<{
@@ -73,6 +74,9 @@ const BridgeContainer: React.FC = () => {
           changeValue={setInputValue}
           value={inputValue}
         />
+        <Button clickHandler={() => ""} disabled={!inputValue}>
+          Burn
+        </Button>
       </section>
     </div>
   );
