@@ -42,7 +42,15 @@ const SwapContainer: React.FC<SwapContainerProps> = (props) => {
         />
       </section>
       {props.open && (
-        <section className={styles.Dropdown}>
+        <section
+          className={styles.Dropdown}
+          onClick={() =>
+            props.valueChanger(
+              props.value === "BSC" ? "ETH" : "BSC",
+              props.side
+            )
+          }
+        >
           <hr />
           <div>
             <img

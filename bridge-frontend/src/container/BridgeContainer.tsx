@@ -19,9 +19,24 @@ const BridgeContainer: React.FC = () => {
     right: false,
   });
 
-  const handleSwapper = () => {};
+  const handleSwapper = (value: "ETH" | "BSC", side: "left" | "right") => {
+    if (side === "left") {
+      setCurrValue((prev) => ({
+        ...prev,
+        left: value,
+        right: value === "BSC" ? "ETH" : "BSC",
+      }));
+    } else {
+      setCurrValue((prev) => ({
+        ...prev,
+        right: value,
+        left: value === "ETH" ? "BSC" : "ETH",
+      }));
+    }
+    toggleDropdown();
+  };
 
-  const toggleDropdown = (side: "left" | "right") => {
+  const toggleDropdown = (side: "left" | "right" | "" = "") => {
     setDropdownOpen((prev) => ({
       left: side === "left" ? !prev.left : false,
       right: side === "right" ? !prev.right : false,
