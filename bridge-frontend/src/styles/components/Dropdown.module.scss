@@ -1,0 +1,26 @@
+.SwapContainer {
+  background-color: #4a403a;
+  color: #fff;
+  min-width: 200px;
+  border-radius: 4px;
+  border: 3px solid #fff;
+  .View {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 10px;
+    div {
+      display: flex;
+      align-items: center;
+      img {
+        height: 30px;
+      }
+      p {
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: 0.4px;
+        font-weight: 700;
+      }
+    }
+  }
+}

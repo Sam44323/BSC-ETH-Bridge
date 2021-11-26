@@ -7,4 +7,11 @@
   min-height: 300px;
   background-color: #fff;
   background-color: #212121;
+  .SwapSection {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 3rem;
+  }
 }

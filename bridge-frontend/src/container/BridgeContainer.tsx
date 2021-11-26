@@ -33,9 +33,9 @@ const BridgeContainer: React.FC = () => {
         />
         <Dropdown
           img={currValue.right === "ETH" ? ethereum : binance}
-          open={dropdownOpen.left}
-          side="left"
-          value={currValue.left}
+          open={dropdownOpen.right}
+          side="right"
+          value={currValue.right}
           valueChanger={handleSwapper}
         />
       </section>
