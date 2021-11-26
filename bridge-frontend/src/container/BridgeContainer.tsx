@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/container/BridgeContainer.module.scss";
-import SwapContainer from "../components/SwapContainer";
+import Dropdown from "../components/Dropdown";
 
 const BridgeContainer: React.FC = () => {
   return (
