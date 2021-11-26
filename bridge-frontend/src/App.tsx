@@ -14,7 +14,7 @@ const App: React.FC = () => {
           <FontAwesomeIcon
             icon={faArrowsAltH}
             style={{
-              color: "salmon",
+              color: "#fff",
             }}
           />{" "}
           <span>BSC</span>
