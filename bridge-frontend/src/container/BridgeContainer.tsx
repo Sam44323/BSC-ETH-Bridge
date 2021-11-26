@@ -46,6 +46,11 @@ const BridgeContainer: React.FC = () => {
     }));
   };
 
+  const clickHandler = () => {
+    alert("swapping");
+    setInputValue("");
+  };
+
   return (
     <div className={styles.BridgeContainer}>
       <section className={styles.SwapSection}>
@@ -69,12 +74,12 @@ const BridgeContainer: React.FC = () => {
       <section className={styles.InputSection}>
         <Input
           placeholder="0"
-          label="Amount to burn"
+          label="Amount to swap"
           type="number"
           changeValue={setInputValue}
           value={inputValue}
         />
-        <Button clickHandler={() => ""} disabled={!inputValue}>
+        <Button clickHandler={clickHandler} disabled={!inputValue}>
           Burn
         </Button>
       </section>
