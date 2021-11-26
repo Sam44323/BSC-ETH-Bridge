@@ -4,6 +4,7 @@
   min-width: 200px;
   border-radius: 4px;
   border: 3px solid #fff;
+  transition: 0.7s ease-in-out;
   .View {
     display: flex;
     align-items: center;
@@ -22,5 +23,9 @@
         font-weight: 700;
       }
     }
+  }
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.08);
   }
 }
