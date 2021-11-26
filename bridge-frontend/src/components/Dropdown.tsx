@@ -16,7 +16,14 @@ const SwapContainer: React.FC<SwapContainerProps> = (props) => {
     <div className={styles.SwapContainer}>
       <section className={styles.View}>
         <div>
-          <img src={props.img} alt={props.value} />
+          <img
+            src={props.img}
+            alt={props.value}
+            style={{
+              height: `${props.value === "BSC" && "35px"}`,
+              padding: `${props.value === "BSC" && "-1rem 4px"}`,
+            }}
+          />
           <p>{props.value}</p>
         </div>
         <FontAwesomeIcon
