@@ -80,7 +80,7 @@ const BridgeContainer: React.FC = () => {
           value={inputValue}
         />
         <Button clickHandler={clickHandler} disabled={!inputValue}>
-          Burn
+          SWAP
         </Button>
       </section>
     </div>
