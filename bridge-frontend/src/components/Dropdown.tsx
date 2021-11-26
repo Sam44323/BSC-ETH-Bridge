@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../styles/components/Dropdown.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { binance, ethereum } from "../assets";
 
 interface SwapContainerProps {
   img: string;
@@ -33,7 +34,22 @@ const SwapContainer: React.FC<SwapContainerProps> = (props) => {
           }}
         />
       </section>
-      <section className={styles.Dropdown}></section>
+      {props.open && (
+        <section className={styles.Dropdown}>
+          <hr />
+          <div>
+            <img
+              src={props.value === "BSC" ? ethereum : binance}
+              alt={props.value}
+              style={{
+                height: `${props.value === "BSC" && "25px"}`,
+                padding: `${props.value === "BSC" && "0.1rem 2.8px"}`,
+              }}
+            />
+            <p>{props.value === "BSC" ? "ETH" : "BSC"}</p>
+          </div>
+        </section>
+      )}
     </div>
   );
 };
