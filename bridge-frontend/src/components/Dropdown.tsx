@@ -38,6 +38,8 @@ const SwapContainer: React.FC<SwapContainerProps> = (props) => {
           icon={faArrowDown}
           style={{
             color: "#fff",
+            transition: "0.4s ease-in-out",
+            transform: props.open ? "rotate(-180deg)" : "",
           }}
         />
       </section>
