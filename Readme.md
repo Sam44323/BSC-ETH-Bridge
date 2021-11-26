@@ -24,6 +24,19 @@
 
 ---
 
+### **Bridge-Frontend Folder**
+
+---
+
+- **Typescript**
+- **ReactJS**
+- **Toast**
+- **Jest**
+- **SCSS**
+- **Fontawesome**
+
+---
+
 # **Scripts**
 
 _Wanna contribute? Cool! Fork the repo and run the following commands for the following folders based on which part you want to contribute for_
@@ -56,6 +69,36 @@ _Testing a specific file_
 
 ```bash
 yarn test test/<test-file-name>
+```
+
+---
+
+### **Bridge-Frontend Folder**
+
+---
+
+**Install the dependencies**
+
+```bash
+yarn
+```
+
+**Start the dev server**
+
+```bash
+yarn start
+```
+
+**Running tests for components**
+
+```bash
+yarn test
+```
+
+**Create a prod build**
+
+```bash
+yarn build
 ```
 
 ---
