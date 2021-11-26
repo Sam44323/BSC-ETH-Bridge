@@ -19,6 +19,7 @@ const BridgeContainer: React.FC = () => {
     left: false,
     right: false,
   });
+  const [inputValue, setInputValue] = React.useState<string>("");
 
   const handleSwapper = (value: "ETH" | "BSC", side: "left" | "right") => {
     if (side === "left") {
@@ -64,7 +65,15 @@ const BridgeContainer: React.FC = () => {
           toggleDropdown={toggleDropdown}
         />
       </section>
-      <section className={styles.InputSection}></section>
+      <section className={styles.InputSection}>
+        <Input
+          placeholder="0"
+          label="Amount to burn"
+          type="number"
+          changeValue={setInputValue}
+          value={inputValue}
+        />
+      </section>
     </div>
   );
 };
