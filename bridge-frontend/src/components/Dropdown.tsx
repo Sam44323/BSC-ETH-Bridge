@@ -10,12 +10,19 @@ interface SwapContainerProps {
   value: "ETH" | "BSC";
   side: "left" | "right";
   valueChanger: (value: "ETH" | "BSC", side: "left" | "right") => void;
+  toggleDropdown: (side: "left" | "right") => void;
 }
 
 const SwapContainer: React.FC<SwapContainerProps> = (props) => {
   return (
     <div className={styles.SwapContainer}>
-      <section className={styles.View}>
+      <section
+        className={styles.View}
+        onClick={() => props.toggleDropdown(props.side)}
+        style={{
+          borderBottom: !props.open ? "3px solid #fff" : "",
+        }}
+      >
         <div>
           <img
             src={props.img}

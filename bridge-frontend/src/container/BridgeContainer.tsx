@@ -21,6 +21,13 @@ const BridgeContainer: React.FC = () => {
 
   const handleSwapper = () => {};
 
+  const toggleDropdown = (side: "left" | "right") => {
+    setDropdownOpen((prev) => ({
+      left: side === "left" ? !prev.left : false,
+      right: side === "right" ? !prev.right : false,
+    }));
+  };
+
   return (
     <div className={styles.BridgeContainer}>
       <section className={styles.SwapSection}>
@@ -30,6 +37,7 @@ const BridgeContainer: React.FC = () => {
           side="left"
           value={currValue.left}
           valueChanger={handleSwapper}
+          toggleDropdown={toggleDropdown}
         />
         <Dropdown
           img={currValue.right === "ETH" ? ethereum : binance}
@@ -37,6 +45,7 @@ const BridgeContainer: React.FC = () => {
           side="right"
           value={currValue.right}
           valueChanger={handleSwapper}
+          toggleDropdown={toggleDropdown}
         />
       </section>
       <section className={styles.InputSection}></section>
