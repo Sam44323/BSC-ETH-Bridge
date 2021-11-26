@@ -5,7 +5,13 @@ import { binance, ethereum } from "../assets/index";
 import Input from "../components/Input";
 import Button from "../components/Button";
 
+/**
+ *
+ * @returns the entire bridge container with embedded components and functionalities
+ */
+
 const BridgeContainer: React.FC = () => {
+  // storing the state of the left and right card data
   const [currValue, setCurrValue] = React.useState<{
     left: "ETH" | "BSC";
     right: "ETH" | "BSC";
@@ -13,6 +19,8 @@ const BridgeContainer: React.FC = () => {
     left: "ETH",
     right: "BSC",
   });
+
+  // storing the data of the left and right card dropdowns
   const [dropdownOpen, setDropdownOpen] = React.useState<{
     left: boolean;
     right: boolean;
@@ -20,7 +28,11 @@ const BridgeContainer: React.FC = () => {
     left: false,
     right: false,
   });
+
+  // storing the value for the input
   const [inputValue, setInputValue] = React.useState<string>("");
+
+  // handling the card-swapping interface between the left and right card
 
   const handleSwapper = (value: "ETH" | "BSC", side: "left" | "right") => {
     if (side === "left") {
@@ -39,12 +51,16 @@ const BridgeContainer: React.FC = () => {
     toggleDropdown();
   };
 
+  // handling the dropdown toggle for the left and right card
+
   const toggleDropdown = (side: "left" | "right" | "" = "") => {
     setDropdownOpen((prev) => ({
       left: side === "left" ? !prev.left : false,
       right: side === "right" ? !prev.right : false,
     }));
   };
+
+  // click handler after the swap button is clicked
 
   const clickHandler = () => {
     alert("swapping");
