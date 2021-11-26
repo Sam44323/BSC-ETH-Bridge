@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../styles/container/BridgeContainer.module.scss";
 import Dropdown from "../components/Dropdown";
+import { binance, ethereum } from "../assets/index";
 
 const BridgeContainer: React.FC = () => {
   const [currValue, setCurrValue] = React.useState<{
@@ -10,12 +11,33 @@ const BridgeContainer: React.FC = () => {
     left: "ETH",
     right: "BSC",
   });
+  const [dropdownOpen, setDropdownOpen] = React.useState<{
+    left: boolean;
+    right: boolean;
+  }>({
+    left: false,
+    right: false,
+  });
+
+  const handleSwapper = () => {};
 
   return (
     <div className={styles.BridgeContainer}>
       <section className={styles.SwapSection}>
-        <div className={styles.SideContainers}></div>
-        <div className={styles.SideContainers}></div>
+        <Dropdown
+          img={currValue.left === "ETH" ? ethereum : binance}
+          open={dropdownOpen.left}
+          side="left"
+          value={currValue.left}
+          valueChanger={handleSwapper}
+        />
+        <Dropdown
+          img={currValue.right === "ETH" ? ethereum : binance}
+          open={dropdownOpen.left}
+          side="left"
+          value={currValue.left}
+          valueChanger={handleSwapper}
+        />
       </section>
       <section className={styles.InputSection}></section>
     </div>

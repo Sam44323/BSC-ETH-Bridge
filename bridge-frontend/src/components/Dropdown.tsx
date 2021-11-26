@@ -5,8 +5,8 @@ interface SwapContainerProps {
   img: string;
   open: boolean;
   value: "ETH" | "BSC";
-  valueChanger: (value: "ETH" | "BSC") => void;
-  showDropdown: boolean;
+  side: "left" | "right";
+  valueChanger: (value: "ETH" | "BSC", side: "left" | "right") => void;
 }
 
 const SwapContainer: React.FC<SwapContainerProps> = () => {
