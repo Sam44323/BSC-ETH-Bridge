@@ -8,10 +8,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 import Button from "./Button";
 
-const tokenArray = [
-  "0x902c63Dd4ec70ab6e1351c18070147a1bf2D017B",
-  "0xd99a5450d51ec9E4965396b85cBFA45C9a26909e",
-];
+const tokenArray = [process.env.REACT_ETK_TOKEN, process.env.REACT_BTK_TOKEN];
 
 const Header: React.FC = () => {
   const [accountData, setAccountData] = React.useState<any>(null);
