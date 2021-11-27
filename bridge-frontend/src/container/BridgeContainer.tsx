@@ -90,7 +90,7 @@ const BridgeContainer: React.FC = () => {
           className={styles.SwapIcon}
           icon={faArrowsAltH}
           onClick={arrowSwapper}
-          size="lg"
+          size="3x"
           style={{
             color: "#fff",
           }}
