@@ -62,6 +62,8 @@ const BridgeContainer: React.FC = () => {
     }));
   };
 
+  // handling the toggle for the currValue state when the arrow is clicked
+
   const arrowSwapper = () =>
     setCurrValue((prev) => ({
       left: prev.left === "ETH" ? "BSC" : "ETH",
