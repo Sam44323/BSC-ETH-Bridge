@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import styles from "../styles/components/Header.module.scss";
 import { ethereum, binance } from "../assets/index";
-import { useEthers, useEtherBalance, useTokenBalance } from "@usedapp/core";
+import { useEthers, useTokenBalance } from "@usedapp/core";
 import { formatEther } from "@ethersproject/units";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 import Button from "./Button";
 
@@ -13,19 +15,47 @@ const tokenArray = [
 
 const Header: React.FC = () => {
   const [accountData, setAccountData] = React.useState<any>(null);
+  const [initialConnection, setInitialConnection] =
+    React.useState<boolean>(false);
   const { account, activateBrowserWallet, chainId } = useEthers();
-  const balance = useTokenBalance(
+  let balance = useTokenBalance(
     chainId === 4 ? tokenArray[0] : tokenArray[1],
     account
   );
 
-  useEffect(() => setAccountData(account), [account, balance]);
+  useEffect(() => {
+    console.log(chainId);
+    if (chainId === 4 || chainId === 97) {
+      setAccountData(account);
+      setInitialConnection(true);
+    } else if (initialConnection) {
+      console.log("changed");
+      toast("Please either select Rinkeby or testnet on BSC", {
+        autoClose: 1600,
+        closeOnClick: true,
+        theme: "dark",
+      });
+      setAccountData(null);
+    }
+  }, [account, balance, chainId, initialConnection]);
 
   return (
     <div className={styles.HeaderContainer}>
       <section className={styles.ButtonContainer}>
         <Button
-          clickHandler={() => activateBrowserWallet(() => alert("false"))}
+          clickHandler={
+            !account
+              ? () =>
+                  activateBrowserWallet(() => {
+                    toast.dismiss();
+                    toast("Please either select Rinkeby or testnet on BSC", {
+                      autoClose: 1600,
+                      closeOnClick: true,
+                      theme: "dark",
+                    });
+                  })
+              : () => {}
+          }
         >
           {accountData
             ? `${accountData?.substring(0, 4)}...${accountData?.substring(
