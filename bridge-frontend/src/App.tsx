@@ -3,10 +3,12 @@ import styles from "./App.module.scss";
 import BridgeContainer from "./container/BridgeContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsAltH } from "@fortawesome/free-solid-svg-icons";
+import Header from "./components/Header";
 
 const App: React.FC = () => {
   return (
     <div className={styles.App}>
+      <Header />
       <section className={styles.HeaderContainer}>
         <h1>
           Bridge
