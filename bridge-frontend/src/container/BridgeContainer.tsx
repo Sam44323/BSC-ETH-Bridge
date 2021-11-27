@@ -62,6 +62,12 @@ const BridgeContainer: React.FC = () => {
     }));
   };
 
+  const arrowSwapper = () =>
+    setCurrValue((prev) => ({
+      left: prev.left === "ETH" ? "BSC" : "ETH",
+      right: prev.right === "ETH" ? "BSC" : "ETH",
+    }));
+
   // click handler after the swap button is clicked
 
   const clickHandler = () => {
@@ -83,6 +89,7 @@ const BridgeContainer: React.FC = () => {
         <FontAwesomeIcon
           className={styles.SwapIcon}
           icon={faArrowsAltH}
+          onClick={arrowSwapper}
           size="lg"
           style={{
             color: "#fff",
