@@ -11,3 +11,4 @@ cache
 yarn-error.log
 yarn.lock
 .vscode
+coverage

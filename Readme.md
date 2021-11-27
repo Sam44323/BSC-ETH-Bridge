@@ -66,6 +66,12 @@ yarn compile
 yarn test
 ```
 
+**Run the entire coverage test**
+
+```bash
+yarn coverage
+```
+
 _Testing a specific file_
 
 ```bash

@@ -15,7 +15,7 @@ describe("Token", function () {
     Token = await ethers.getContractFactory("TokenBSC");
     token = await Token.deploy();
     [owner, addr1, addr2] = await ethers.getSigners();
-    token.mint(owner.address, 1000);
+    token.transfer(owner.address, 1000);
   });
 
   describe("Admin Checker Tests", () => {
@@ -31,14 +31,25 @@ describe("Token", function () {
 
   describe("Token transaction checker", () => {
     it("Check the initial minted token Balance for owner", async () => {
-      expect(await token.balanceOf(owner.address)).to.equal(1000);
+      console.log(
+        parseInt(await (await token.balanceOf(owner.address)).toString())
+      );
+      expect(
+        parseInt(await (await token.balanceOf(owner.address)).toString()) /
+          10 ** 18
+      ).to.equal(1000);
     });
 
     it("Transfer token from owner address to another address", async () => {
       await token.connect(owner).transfer(addr1.address, 10);
 
-      expect(await token.balanceOf(owner.address)).to.equal(990);
-      expect(await token.balanceOf(addr1.address)).to.equal(10);
+      expect(
+        parseInt(await (await token.balanceOf(owner.address)).toString()) /
+          10 ** 18
+      ).to.equal(990);
+      expect(
+        (await token.balanceOf(addr1.address)).toNumber() / 10 ** 18
+      ).to.equal(10);
     });
 
     it("Transfer token from one user to the other", async () => {
@@ -46,8 +57,12 @@ describe("Token", function () {
 
       await token.connect(addr1).transfer(addr2.address, 5);
 
-      expect(await token.balanceOf(addr1.address)).to.equal(5);
-      expect(await token.balanceOf(addr2.address)).to.equal(5);
+      expect(
+        (await token.balanceOf(addr1.address)).toNumber() / 10 ** 18
+      ).to.equal(10);
+      expect(
+        parseInt(await (await token.balanceOf(owner.address)).toString())
+      ).to.equal(990);
     });
   });
 });
