@@ -32,6 +32,8 @@
 - **ReactJS**
 - **Toast**
 - **Jest**
+- **Web3Modal**
+- **Web3**
 - **SCSS**
 - **Fontawesome**
 
