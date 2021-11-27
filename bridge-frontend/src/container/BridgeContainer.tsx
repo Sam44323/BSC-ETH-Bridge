@@ -4,6 +4,8 @@ import Dropdown from "../components/Dropdown";
 import { binance, ethereum } from "../assets/index";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowsAltH } from "@fortawesome/free-solid-svg-icons";
 
 /**
  *
@@ -77,6 +79,14 @@ const BridgeContainer: React.FC = () => {
           value={currValue.left}
           valueChanger={handleSwapper}
           toggleDropdown={toggleDropdown}
+        />
+        <FontAwesomeIcon
+          className={styles.SwapIcon}
+          icon={faArrowsAltH}
+          size="lg"
+          style={{
+            color: "#fff",
+          }}
         />
         <Dropdown
           img={currValue.right === "ETH" ? ethereum : binance}
