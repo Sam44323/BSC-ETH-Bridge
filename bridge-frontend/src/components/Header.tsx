@@ -8,9 +8,13 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 import Button from "./Button";
 
-const tokenArray = [process.env.REACT_ETK_TOKEN, process.env.REACT_BTK_TOKEN];
+const tokenArray = [
+  process.env.REACT_APP_ETK_TOKEN,
+  process.env.REACT_APP_BTK_TOKEN,
+];
 
 const Header: React.FC = () => {
+  console.log(tokenArray);
   const [accountData, setAccountData] = React.useState<any>(null);
 
   const { account, activateBrowserWallet, chainId } = useEthers();
