@@ -6,17 +6,20 @@ import { formatEther } from "@ethersproject/units";
 
 import Button from "./Button";
 
+const tokenArray = [
+  "0x902c63Dd4ec70ab6e1351c18070147a1bf2D017B",
+  "0xd99a5450d51ec9E4965396b85cBFA45C9a26909e",
+];
+
 const Header: React.FC = () => {
   const [accountData, setAccountData] = React.useState<any>(null);
-  const { account, activateBrowserWallet } = useEthers();
+  const { account, activateBrowserWallet, chainId } = useEthers();
   const balance = useTokenBalance(
-    "0x902c63Dd4ec70ab6e1351c18070147a1bf2D017B",
+    chainId === 4 ? tokenArray[0] : tokenArray[1],
     account
   );
 
-  useEffect(() => setAccountData(account), [account]);
-
-  console.log(balance);
+  useEffect(() => setAccountData(account), [account, balance]);
 
   return (
     <div className={styles.HeaderContainer}>
