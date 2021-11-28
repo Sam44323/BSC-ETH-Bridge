@@ -44,6 +44,8 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
-    "@nomiclabs/hardhat-etherscan": "^2.1.7"
+    "@nomiclabs/hardhat-etherscan": "^2.1.7",
+    "@types/fs-extra": "^9.0.13",
+    "fs-extra": "^10.0.0"
   }
 }
