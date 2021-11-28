@@ -1,7 +1,7 @@
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import { BridgeETH, BridgeBSC, Bridge, TokenETH, TokenBSC } from "../typechain";
+import { BridgeETH, BridgeBSC, TokenETH, TokenBSC } from "../typechain";
 
 describe("Bridge-Contract testing", function () {
   let bscBridge: BridgeBSC,
