@@ -9,8 +9,7 @@ describe("Bridge-Contract testing", function () {
     ethToken: TokenETH,
     bscToken: TokenBSC,
     owner: SignerWithAddress,
-    addr1: SignerWithAddress,
-    addr2: SignerWithAddress;
+    addr1: SignerWithAddress;
 
   beforeEach(async () => {
     // deploying tokens for the bscBridge and the ethBridge
@@ -25,7 +24,7 @@ describe("Bridge-Contract testing", function () {
       await ethers.getContractFactory("BridgeETH")
     ).deploy(ethToken.address);
 
-    [owner, addr1, addr2] = await ethers.getSigners();
+    [owner, addr1] = await ethers.getSigners();
 
     // minting some tokens for the bridges
     await ethToken.transfer(ethBridge.address, 1000);
