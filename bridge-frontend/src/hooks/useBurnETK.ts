@@ -60,6 +60,8 @@ const useBurnETK = () => {
     }
   };
 
+  // method for burning the amount of the etk token approved by user
+
   const burnETK = async (amount: string) => {
     const id = toast.success(`Burning in progress for ${amount} ETK`, {
       autoClose: false,
