@@ -6,6 +6,7 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsAltH } from "@fortawesome/free-solid-svg-icons";
+import useBurnETK from "../hooks/useBurnETK";
 
 /**
  *
@@ -30,6 +31,9 @@ const BridgeContainer: React.FC = () => {
     left: false,
     right: false,
   });
+
+  // using the useBurnETK custom hook for transaction
+  const { approveETKBurn } = useBurnETK();
 
   // storing the value for the input
   const [inputValue, setInputValue] = React.useState<string>("");
@@ -72,9 +76,10 @@ const BridgeContainer: React.FC = () => {
 
   // click handler after the swap button is clicked
 
-  const clickHandler = () => {
-    alert("swapping");
-    setInputValue("");
+  const clickHandler = async () => {
+    approveETKBurn(inputValue);
+    // alert("swapping");
+    // setInputValue("");
   };
 
   return (
