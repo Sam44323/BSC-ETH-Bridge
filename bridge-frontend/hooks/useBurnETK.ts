@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Contract } from "@ethersproject/contracts";
 
 const useBurnETK = () => {
+  //updates
   const ETKTokenContract = new Contract(
     process.env.REACT_APP_ETK_TOKEN,
     ETKToken
