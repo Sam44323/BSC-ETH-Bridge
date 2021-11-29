@@ -72,6 +72,23 @@ const BridgeContainer: React.FC = () => {
     }));
   };
 
+  React.useEffect(() => {
+    const switchChain = async () => {
+      if (currValue.left === "ETH") {
+        await ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: `0x${Number(4).toString(16)}` }],
+        });
+      } else {
+        await ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: `0x${Number(97).toString(16)}` }],
+        });
+      }
+    };
+    switchChain();
+  }, [currValue, ethereum]);
+
   // handling the toggle for the currValue state when the arrow is clicked
 
   const arrowSwapper = () =>
