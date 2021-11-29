@@ -2,7 +2,7 @@ import { ncp } from "ncp";
 
 const [source, destination] = [
   "./artifacts/contracts/",
-  "../bridge-frontend/abis/",
+  "../bridge-frontend/src/abis/",
 ];
 
 ncp(source, destination, function (err) {
