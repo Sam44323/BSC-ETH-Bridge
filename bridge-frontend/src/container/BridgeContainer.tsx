@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/container/BridgeContainer.module.scss";
 import Dropdown from "../components/Dropdown";
-import { binance, ethereum } from "../assets/index";
+import { binance, ethereum as ethImg } from "../assets/index";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,6 +26,7 @@ const BridgeContainer: React.FC = () => {
   });
 
   const { chainId } = useEthers();
+  const { ethereum } = window as any;
 
   // storing the data of the left and right card dropdowns
   const [dropdownOpen, setDropdownOpen] = React.useState<{
@@ -94,7 +95,7 @@ const BridgeContainer: React.FC = () => {
     <div className={styles.BridgeContainer}>
       <section className={styles.SwapSection}>
         <Dropdown
-          img={currValue.left === "ETH" ? ethereum : binance}
+          img={currValue.left === "ETH" ? ethImg : binance}
           open={dropdownOpen.left}
           side="left"
           value={currValue.left}
@@ -111,7 +112,7 @@ const BridgeContainer: React.FC = () => {
           }}
         />
         <Dropdown
-          img={currValue.right === "ETH" ? ethereum : binance}
+          img={currValue.right === "ETH" ? ethImg : binance}
           open={dropdownOpen.right}
           side="right"
           value={currValue.right}
