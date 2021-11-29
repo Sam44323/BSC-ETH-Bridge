@@ -23,25 +23,74 @@ const useBurnETK = () => {
   // method for approving to burn some amount of the etk token mentioned by user
 
   const approveETKBurn = async (amount: string) => {
-    console.log(contractsData.bridge.options.address);
-    await contractsData.token.methods
-      .approve(
-        contractsData.bridge.options.address,
-        getWeb3().utils.toWei(amount, "ether")
-      )
-      .send({
-        from: account,
+    const id = toast.success(`Approving in progress for ${amount} ETK`, {
+      autoClose: false,
+      closeOnClick: true,
+      theme: "dark",
+    });
+    try {
+      await contractsData.token.methods
+        .approve(
+          contractsData.bridge.options.address,
+          getWeb3().utils.toWei(amount, "ether")
+        )
+        .send({
+          from: account,
+        });
+      console.log(amount);
+      toast.dismiss(id);
+      toast.success(`Approved ${amount} ETK`, {
+        autoClose: 1500,
+        closeOnClick: true,
+        theme: "dark",
       });
-    console.log(amount);
-    await burnETK(amount);
+      await burnETK(amount);
+    } catch (err) {
+      toast.dismiss(id);
+      let message = (err as any).message;
+      if ((err as any).code === 4001) {
+        message = `Error in approving ${amount} ETK. Please try again!`;
+      }
+
+      toast.error(message, {
+        autoClose: 1500,
+        closeOnClick: true,
+        theme: "dark",
+      });
+    }
   };
 
   const burnETK = async (amount: string) => {
-    await contractsData.bridge.methods
-      .burn(getWeb3().utils.toWei(amount, "ether"))
-      .send({
-        from: account,
+    const id = toast.success(`Burning in progress for ${amount} ETK`, {
+      autoClose: false,
+      closeOnClick: true,
+      theme: "dark",
+    });
+    try {
+      await contractsData.bridge.methods
+        .burn(getWeb3().utils.toWei(amount, "ether"))
+        .send({
+          from: account,
+        });
+      toast.dismiss(id);
+      toast.success(`Burned ${amount} ETK`, {
+        autoClose: 1500,
+        closeOnClick: true,
+        theme: "dark",
       });
+    } catch (err) {
+      toast.dismiss(id);
+      let message = (err as any).message;
+      if ((err as any).code === 4001) {
+        message = `Error in burning ${amount} ETK. Please try again!`;
+      }
+
+      toast.error(message, {
+        autoClose: 1500,
+        closeOnClick: true,
+        theme: "dark",
+      });
+    }
   };
 
   return { approveETKBurn, burnETK };
