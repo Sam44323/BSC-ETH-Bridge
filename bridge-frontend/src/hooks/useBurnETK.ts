@@ -4,7 +4,7 @@ import { getContracts } from "../utils/contracts";
 import { useEffect, useState } from "react";
 
 const useBurnETK = () => {
-  // contract for the etk token on ethereum(rinkeby)
+  // storing the contracts
   const [contractsData, setContractsData] = useState<any>();
   const { account } = useEthers();
 
