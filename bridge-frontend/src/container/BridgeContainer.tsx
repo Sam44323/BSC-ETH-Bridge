@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsAltH } from "@fortawesome/free-solid-svg-icons";
 import useBurnETK from "../hooks/useBurnETK";
 import { useEthers } from "@usedapp/core";
+import useBurnBTK from "../hooks/useBurnBTK";
 
 /**
  *
@@ -37,6 +38,7 @@ const BridgeContainer: React.FC = () => {
 
   // using the useBurnETK custom hook for transaction
   const { approveETKBurn } = useBurnETK();
+  const { approveBTKBurn } = useBurnBTK();
 
   // storing the value for the input
   const [inputValue, setInputValue] = React.useState<string>("");
@@ -77,11 +79,9 @@ const BridgeContainer: React.FC = () => {
       right: prev.right === "ETH" ? "BSC" : "ETH",
     }));
 
-  const ethBurnBscMint = async () => {
-    await approveETKBurn(inputValue);
-  };
+  const ethBurnBscMint = async () => await approveETKBurn(inputValue);
 
-  const bscBurnEthMint = async () => {};
+  const bscBurnEthMint = async () => await approveBTKBurn(inputValue);
 
   // click handler for initializing the swapping
   const clickHandler = async () => {
