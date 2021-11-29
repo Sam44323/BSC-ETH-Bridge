@@ -55,7 +55,17 @@ const Header: React.FC = () => {
       </section>
       <section className={styles.BalanceSection}>
         <img src={chainId === 4 ? ethImg : binance} alt="logo" />
-        <p>{balance && formatEther(balance).slice(0, 10)} ETK</p>
+        <p>
+          {balance &&
+            `${
+              formatEther(balance).split(".")[1]
+                ? formatEther(balance).split(".")[0] +
+                  "." +
+                  formatEther(balance).split(".")[1].slice(0, 3)
+                : formatEther(balance).split(".")[0]
+            }`}{" "}
+          ETK
+        </p>
       </section>
     </div>
   );
