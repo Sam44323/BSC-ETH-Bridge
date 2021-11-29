@@ -8,6 +8,10 @@ import { ToastContainer } from "react-toastify";
 
 const config: Config = {
   supportedChains: [ChainId.Rinkeby, 97],
+  notifications: {
+    expirationPeriod: 1000,
+    checkInterval: 1000,
+  },
 };
 
 ReactDOM.render(

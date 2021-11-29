@@ -14,7 +14,6 @@ const tokenArray = [
 ];
 
 const Header: React.FC = () => {
-  console.log(tokenArray);
   const [accountData, setAccountData] = React.useState<any>(null);
 
   const { account, activateBrowserWallet, chainId } = useEthers();

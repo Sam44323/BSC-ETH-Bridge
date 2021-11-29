@@ -7,6 +7,7 @@ import Button from "../components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsAltH } from "@fortawesome/free-solid-svg-icons";
 import useBurnETK from "../hooks/useBurnETK";
+import { useEthers } from "@usedapp/core";
 
 /**
  *
@@ -23,6 +24,8 @@ const BridgeContainer: React.FC = () => {
     right: "BSC",
   });
 
+  const { chainId } = useEthers();
+
   // storing the data of the left and right card dropdowns
   const [dropdownOpen, setDropdownOpen] = React.useState<{
     left: boolean;
@@ -33,7 +36,7 @@ const BridgeContainer: React.FC = () => {
   });
 
   // using the useBurnETK custom hook for transaction
-  const { approveETKBurn, burnETK } = useBurnETK();
+  const { approveETKBurn } = useBurnETK();
 
   // storing the value for the input
   const [inputValue, setInputValue] = React.useState<string>("");
@@ -74,13 +77,17 @@ const BridgeContainer: React.FC = () => {
       right: prev.right === "ETH" ? "BSC" : "ETH",
     }));
 
-  // click handler after the swap button is clicked
-
-  const clickHandler = async () => {
+  const ethBurnBscMint = async () => {
     await approveETKBurn(inputValue);
-    await burnETK(inputValue);
-    // alert("swapping");
-    // setInputValue("");
+  };
+
+  const bscBurnEthMint = async () => {};
+
+  // click handler for initializing the swapping
+  const clickHandler = async () => {
+    if (chainId === 4) ethBurnBscMint();
+    else bscBurnEthMint();
+    setInputValue("");
   };
 
   return (
