@@ -22,18 +22,33 @@ const useBurnETK = () => {
       transactionName: "Approving some amount by the user to burn!",
     });
 
+  const { send: burnETKSend, state: burnETKState } = useContractFunction(
+    ETKBridgeContract,
+    "burn",
+    {
+      transactionName: "Burning the amount approved by the user!",
+    }
+  );
+
   // method for approving to burn some amount of the etk token mentioned by user
 
   const approveETKBurn = async (amount: string) => {
     await approveEtkBurnSend(ETKBridgeContract.address, amount);
     toast.success(`Approved ${amount} ETK`, {
-      autoClose: 1600,
+      autoClose: 1000,
       closeOnClick: true,
       theme: "dark",
     });
   };
 
-  const burnETK = async () => {};
+  const burnETK = async (amount: string) => {
+    await burnETKSend(amount);
+    toast.success(`Burned ${amount} ETK!`, {
+      autoClose: 1000,
+      closeOnClick: true,
+      theme: "dark",
+    });
+  };
 
   return { approveETKBurn, burnETK };
 };

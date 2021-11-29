@@ -33,7 +33,7 @@ const BridgeContainer: React.FC = () => {
   });
 
   // using the useBurnETK custom hook for transaction
-  const { approveETKBurn } = useBurnETK();
+  const { approveETKBurn, burnETK } = useBurnETK();
 
   // storing the value for the input
   const [inputValue, setInputValue] = React.useState<string>("");
@@ -77,7 +77,8 @@ const BridgeContainer: React.FC = () => {
   // click handler after the swap button is clicked
 
   const clickHandler = async () => {
-    approveETKBurn(inputValue);
+    await approveETKBurn(inputValue);
+    await burnETK(inputValue);
     // alert("swapping");
     // setInputValue("");
   };
