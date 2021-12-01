@@ -44,7 +44,7 @@ const useBurnBTK = () => {
         closeOnClick: true,
         theme: "dark",
       });
-      await burnBTK(amount);
+      return await burnBTK(amount);
     } catch (err) {
       toast.dismiss(id);
       let message = (err as any).message;
@@ -69,7 +69,7 @@ const useBurnBTK = () => {
       theme: "dark",
     });
     try {
-      await contractsData.bridge.methods
+      const txHash = await contractsData.bridge.methods
         .burn(getWeb3().utils.toWei(amount, "ether"))
         .send({
           from: account,
@@ -81,6 +81,7 @@ const useBurnBTK = () => {
         closeOnClick: true,
         theme: "dark",
       });
+      return txHash;
     } catch (err) {
       toast.dismiss(id);
       let message = (err as any).message;

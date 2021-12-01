@@ -97,9 +97,15 @@ const BridgeContainer: React.FC = () => {
       right: prev.right === "ETH" ? "BSC" : "ETH",
     }));
 
-  const ethBurnBscMint = async () => await approveETKBurn(inputValue);
+  const ethBurnBscMint = async () => {
+    const txHash = await approveETKBurn(inputValue);
+    console.log(txHash);
+  };
 
-  const bscBurnEthMint = async () => await approveBTKBurn(inputValue);
+  const bscBurnEthMint = async () => {
+    const txHash = await approveBTKBurn(inputValue);
+    console.log(txHash);
+  };
 
   // click handler for initializing the swapping
   const clickHandler = async () => {
