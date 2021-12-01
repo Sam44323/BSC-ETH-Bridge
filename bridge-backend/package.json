@@ -1,0 +1,8 @@
+{
+  "name": "bridge-backend",
+  "version": "1.0.0",
+  "description": "backend for the eth-bsc bridging app",
+  "main": "server.js",
+  "author": "Sam44323",
+  "license": "MIT"
+}
