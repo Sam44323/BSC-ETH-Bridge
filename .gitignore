@@ -3,6 +3,8 @@ node_modules
 build
 .gpg
 .env
+dist
+loggers.log
 .vscode
 .solhintignore
 artifacts

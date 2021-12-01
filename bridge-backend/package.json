@@ -4,5 +4,24 @@
   "description": "backend for the eth-bsc bridging app",
   "main": "server.js",
   "author": "Sam44323",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./dist/server.js",
+    "build": "tsc -p .",
+    "dev": "nodemon server.ts"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.11.11"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2",
+    "winston": "^3.3.3"
+  }
 }
