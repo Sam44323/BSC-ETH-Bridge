@@ -71,7 +71,7 @@ describe("Bridging from ETH to BSC and vice-versa", () => {
     Minting the BTK token equal amount to on binance chain!
     */
     const chainNonce = await ethBridge.getNonce();
-    await bscBridge.connect(owner).mint(addr1.address, 10, chainNonce);
+    await bscBridge.mint(addr1.address, 10, chainNonce);
 
     bscUserBalance = (await bscToken.balanceOf(addr1.address)).toString();
 
@@ -108,7 +108,7 @@ describe("Bridging from ETH to BSC and vice-versa", () => {
     Minting the ETK token equal amount to on ethereum chain!
     */
     const chainNonce = await bscBridge.getNonce();
-    await ethBridge.connect(owner).mint(addr1.address, 10, chainNonce);
+    await ethBridge.mint(addr1.address, 10, chainNonce);
 
     ethUserBalance = (await ethToken.balanceOf(addr1.address)).toString();
 
