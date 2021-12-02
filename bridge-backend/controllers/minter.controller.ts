@@ -1,10 +1,11 @@
-import express from "express";
+import { Request, Response } from "express";
 import logger from "../utils/logger";
 import { getWeb3 } from "../utils/web3";
 
-export const mintETH = async (req: express.Request, res: express.Response) => {
+export const mintETH = async (req: Request, res: Response) => {
   try {
     const { txHash } = req.body;
+    console.log(txHash);
     const web3 = getWeb3("ETH");
     const receipt = await web3.eth.getTransactionReceipt(txHash);
     console.log(receipt);
@@ -20,8 +21,14 @@ export const mintETH = async (req: express.Request, res: express.Response) => {
   }
 };
 
-export const mintBSC = async (req: express.Request, res: express.Response) => {
+export const mintBSC = async (req: Request, res: Response) => {
   try {
+    const { txHash } = req.body;
+    console.log(txHash);
+    const web3 = getWeb3("BSC");
+    const receipt = await web3.eth.getTransactionReceipt(txHash);
+    console.log(receipt);
+
     res.status(200).json({
       message: "working!",
     });
