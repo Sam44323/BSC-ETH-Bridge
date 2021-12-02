@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { mintBSC, mintETH } from "../controllers/txhash.controller";
+import { mintBSC, mintETH } from "../controllers/minter.controller";
 
 export const router = Router();
 
