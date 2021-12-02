@@ -6,6 +6,7 @@ export const mintETH = async (req: Request, res: Response) => {
   try {
     const { txHash } = req.body;
     console.log(txHash);
+    setTimeout(() => logger.info("Waiting for block to be added!"), 3000);
     const web3 = getWeb3("ETH");
     const receipt = await web3.eth.getTransactionReceipt(txHash);
     console.log(receipt);
@@ -25,6 +26,7 @@ export const mintBSC = async (req: Request, res: Response) => {
   try {
     const { txHash } = req.body;
     console.log(txHash);
+    setTimeout(() => logger.info("Waiting for block to be added!"), 3000);
     const web3 = getWeb3("BSC");
     const receipt = await web3.eth.getTransactionReceipt(txHash);
     console.log(receipt);
