@@ -32,7 +32,7 @@
 - **ReactJS**
 - **Toast**
 - **Jest**
-- **Web3Modal**
+- **Axios**
 - **Usedapp**
 - **Fontawesome**
 
