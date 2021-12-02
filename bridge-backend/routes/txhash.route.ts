@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { verifyHash } from "../controllers/txhash.controller";
+import { mintBSC, mintETH } from "../controllers/txhash.controller";
 
 const router = Router();
-router.post("/verify-hash", verifyHash);
+router.post("/mint-bsc", mintBSC);
+router.post("/mint-eth", mintETH);
