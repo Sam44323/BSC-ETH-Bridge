@@ -101,10 +101,11 @@ const BridgeContainer: React.FC = () => {
 
   const ethBurnBscMint = async () => {
     const txHash = await approveETKBurn(inputValue);
+    console.log(txHash);
     await Axios.post("/mint-bsc", {
       txHash: txHash.transactionHash,
     });
-    toast.success("Minting BSC transaction submitted", {
+    toast.success("Minting BTK transaction submitted", {
       theme: "dark",
       autoClose: 1500,
       closeOnClick: true,
@@ -114,6 +115,14 @@ const BridgeContainer: React.FC = () => {
   const bscBurnEthMint = async () => {
     const txHash = await approveBTKBurn(inputValue);
     console.log(txHash);
+    await Axios.post("/mint-eth", {
+      txHash: txHash.transactionHash,
+    });
+    toast.success("Minting ETK transaction submitted", {
+      theme: "dark",
+      autoClose: 1500,
+      closeOnClick: true,
+    });
   };
 
   // click handler for initializing the swapping
