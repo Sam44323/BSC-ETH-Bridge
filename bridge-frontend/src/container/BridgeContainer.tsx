@@ -100,7 +100,9 @@ const BridgeContainer: React.FC = () => {
 
   const ethBurnBscMint = async () => {
     const txHash = await approveETKBurn(inputValue);
-    console.log(txHash);
+    await Axios.post("/mint-bsc", {
+      txHash: txHash.transactionHash,
+    });
   };
 
   const bscBurnEthMint = async () => {
