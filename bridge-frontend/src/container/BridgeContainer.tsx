@@ -10,6 +10,7 @@ import useBurnETK from "../hooks/useBurnETK";
 import { useEthers } from "@usedapp/core";
 import useBurnBTK from "../hooks/useBurnBTK";
 import Axios from "../utils/axios";
+import { toast } from "react-toastify";
 
 /**
  *
@@ -102,6 +103,11 @@ const BridgeContainer: React.FC = () => {
     const txHash = await approveETKBurn(inputValue);
     await Axios.post("/mint-bsc", {
       txHash: txHash.transactionHash,
+    });
+    toast.success("Minting BSC transaction submitted", {
+      theme: "dark",
+      autoClose: 1500,
+      closeOnClick: true,
     });
   };
 
