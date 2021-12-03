@@ -16,6 +16,7 @@ export const mintETH = async (req: Request, res: Response) => {
     console.log(txHash);
     setTimeout(() => logger.info("Waiting for block to be added!"), 3000);
     const burnedAmount = await amountFetcher(txHash, getWeb3("ETH"));
+    console.log(burnedAmount);
 
     res.status(200).json({
       message: "Minting in progress!",
