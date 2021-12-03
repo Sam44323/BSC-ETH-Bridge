@@ -58,11 +58,11 @@ export const mintETH = async (req: Request, res: Response) => {
 export const mintBSC = async (req: Request, res: Response) => {
   try {
     const { txHash } = req.body;
-    console.log(txHash);
+    logger.info(`ℹ: txHash for burning ETK on ethereum: ${txHash}`);
     setTimeout(() => {}, 3000);
     const burnedAmount = await amountFetcher(txHash, getWeb3("ETH"));
-    logger.info(`✅ Amount of ETK burned is ${burnedAmount}`);
-    logger.info(`✅ Minting for ${burnedAmount} BTK in progress`);
+    logger.info(`✅:  Amount of ETK burned is ${burnedAmount}`);
+    logger.info(`✅:  Minting for ${burnedAmount} BTK in progress`);
 
     res.status(200).json({
       message: "Minting in progress!",
