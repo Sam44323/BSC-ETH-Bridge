@@ -2,6 +2,9 @@ import { Request, Response } from "express";
 import Web3 from "web3";
 import logger from "../utils/logger";
 import { getWeb3 } from "../utils/web3";
+import { getContracts } from "../utils/contracts";
+
+// UTIL FUNCTIONS
 
 /**
  *
@@ -16,6 +19,10 @@ const amountFetcher = async (txHash: string, web3: Web3) => {
   amount = web3.utils.fromWei(amount, "ether");
   return amount;
 };
+
+//----------------------------------------------------------------------------------------------------------------------
+
+// CONTROLLER FUNCTIONS
 
 /**
  * method for starting the minting process on ethereum
@@ -52,9 +59,10 @@ export const mintBSC = async (req: Request, res: Response) => {
   try {
     const { txHash } = req.body;
     console.log(txHash);
-    setTimeout(() => logger.info("Waiting for block to be added!"), 3000);
+    setTimeout(() => {}, 3000);
     const burnedAmount = await amountFetcher(txHash, getWeb3("ETH"));
-    console.log(burnedAmount);
+    logger.info(`✅ Amount of ETK burned is ${burnedAmount}`);
+    logger.info(`✅ Minting for ${burnedAmount} BTK in progress`);
 
     res.status(200).json({
       message: "Minting in progress!",
