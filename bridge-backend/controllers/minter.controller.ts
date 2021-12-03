@@ -17,7 +17,7 @@ const amountFetcher = async (txHash: string, web3: Web3) => {
   const receipt = await web3.eth.getTransaction(txHash);
   let amount = web3.utils.hexToNumberString(`0x${receipt.input.slice(35)}`);
   amount = web3.utils.fromWei(amount, "ether");
-  return amount;
+  return [amount, receipt.from];
 };
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -35,16 +35,19 @@ export const mintETH = async (req: Request, res: Response) => {
     const { txHash } = req.body;
     console.log(txHash);
     setTimeout(() => logger.info("Waiting for block to be added!"), 3000);
-    const burnedAmount = await amountFetcher(txHash, getWeb3("BSC"));
+    const [burnedAmount, recipient] = await amountFetcher(
+      txHash,
+      getWeb3("BSC")
+    );
     console.log(burnedAmount);
 
     res.status(200).json({
       message: "Minting in progress!",
     });
   } catch (err: any) {
-    logger.error(`Can't fetch the colleges at this moment: ${err.message}`);
+    logger.error(`Can't mint the tokens!: ${err.message}`);
     res.status(500).json({
-      message: "Can't get the colleges at this moment!",
+      message: "Can't mint the tokens!",
     });
   }
 };
@@ -58,19 +61,26 @@ export const mintETH = async (req: Request, res: Response) => {
 export const mintBSC = async (req: Request, res: Response) => {
   try {
     const { txHash } = req.body;
+    const [ethBridge, bscBridge] = await getContracts();
     logger.info(`ℹ: txHash for burning ETK on ethereum: ${txHash}`);
     setTimeout(() => {}, 3000);
-    const burnedAmount = await amountFetcher(txHash, getWeb3("ETH"));
+    const [burnedAmount, recipient] = await amountFetcher(
+      txHash,
+      getWeb3("ETH")
+    );
     logger.info(`✅:  Amount of ETK burned is ${burnedAmount}`);
     logger.info(`✅:  Minting for ${burnedAmount} BTK in progress`);
+
+    const hash = bscBridge.methods.getNonce();
+    console.log(hash);
 
     res.status(200).json({
       message: "Minting in progress!",
     });
   } catch (err: any) {
-    logger.error(`Can't fetch the colleges at this moment: ${err.message}`);
+    logger.error(`Can't mint the tokens!: ${err.message}`);
     res.status(500).json({
-      message: "Can't get the colleges at this moment!",
+      message: "Can't mint the tokens!",
     });
   }
 };
