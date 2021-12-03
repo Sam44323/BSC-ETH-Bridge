@@ -15,10 +15,10 @@ export const mintETH = async (req: Request, res: Response) => {
     const { txHash } = req.body;
     console.log(txHash);
     setTimeout(() => logger.info("Waiting for block to be added!"), 3000);
-    console.log(await amountFetcher(txHash, getWeb3("ETH")));
+    const burnedAmount = await amountFetcher(txHash, getWeb3("ETH"));
 
     res.status(200).json({
-      message: "working!",
+      message: "Minting in progress!",
     });
   } catch (err: any) {
     logger.error(`Can't fetch the colleges at this moment: ${err.message}`);
