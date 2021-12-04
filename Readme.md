@@ -1,5 +1,21 @@
 # BSC - ETH Bridge
 
+![Solidity](https://img.shields.io/badge/-Solidity-333333?style=for-the-badge&logo=solidity&logoColor=61dbfb)
+
+![Binance](https://img.shields.io/badge/-Binance-333333?style=for-the-badge&logo=binance&logoColor=61dbfb)
+
+![Ethereum](https://img.shields.io/badge/-Ethereum-333333?style=for-the-badge&logo=ethereum&logoColor=61dbfb)
+
+![React](https://img.shields.io/badge/-React-333333?style=for-the-badge&logo=react&logoColor=61dbfb)
+
+![Typescript](https://img.shields.io/badge/-Typescript-333333?style=for-the-badge&logo=typescript&logoColor=61dbfb)
+
+![Node](https://img.shields.io/badge/-Node.JS-333333?style=for-the-badge&logo=node.js&logoColor=61dbfb)
+
+![Express](https://img.shields.io/badge/-Express-333333?style=for-the-badge&logo=express&logoColor=61dbfb)
+
+![Fontawesome](https://img.shields.io/badge/-Fontawesome-333333?style=for-the-badge&logo=fontawesome&logoColor=61dbfb)
+
 **This repo contains the entire bridging app from frontend to the backend and surely the contracts**
 
 <img src="./img/example.png"/>
