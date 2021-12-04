@@ -103,9 +103,15 @@ const BridgeContainer: React.FC = () => {
     try {
       const txHash = await approveETKBurn(inputValue);
       console.log(txHash);
+      toast.success("Minting for BTK in progress!", {
+        theme: "dark",
+        autoClose: false,
+        closeOnClick: true,
+      });
       await Axios.post("/mint-bsc", {
         txHash: txHash.transactionHash,
       });
+      toast.dismiss();
       toast.success(
         "Minted BTK successfully! Please check the BTK balance on binance testnet",
         {
@@ -127,9 +133,15 @@ const BridgeContainer: React.FC = () => {
     try {
       const txHash = await approveBTKBurn(inputValue);
       console.log(txHash);
+      toast.success("Minting for ETK in progress!", {
+        theme: "dark",
+        autoClose: false,
+        closeOnClick: true,
+      });
       await Axios.post("/mint-eth", {
         txHash: txHash.transactionHash,
       });
+      toast.dismiss();
       toast.success(
         "Minted ETK successfully! Please check the BTK balance on rinkeby testnet",
         {

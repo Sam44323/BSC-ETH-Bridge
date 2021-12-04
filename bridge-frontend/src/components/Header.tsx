@@ -64,7 +64,7 @@ const Header: React.FC = () => {
                   formatEther(balance).split(".")[1].slice(0, 3)
                 : formatEther(balance).split(".")[0]
             }`}{" "}
-          ETK
+          {chainId === 4 ? "ETK" : "BTK"}
         </p>
       </section>
     </div>
