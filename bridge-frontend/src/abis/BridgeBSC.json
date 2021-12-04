@@ -1,7 +1,4 @@
 {
-  "_format": "hh-sol-artifact-1",
-  "contractName": "BridgeBSC",
-  "sourceName": "contracts/bridge/BridgeBSC.sol",
   "abi": [
     {
       "inputs": [
