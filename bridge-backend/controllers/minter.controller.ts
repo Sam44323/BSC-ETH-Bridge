@@ -71,7 +71,7 @@ export const mintBSC = async (req: Request, res: Response) => {
     logger.info(`✅:  Amount of ETK burned is ${burnedAmount}`);
     logger.info(`✅:  Minting for ${burnedAmount} BTK in progress`);
 
-    const hash = bscBridge.methods.getNonce();
+    const hash = bscBridge.methods.getNonce().call();
     console.log(hash);
 
     res.status(200).json({
