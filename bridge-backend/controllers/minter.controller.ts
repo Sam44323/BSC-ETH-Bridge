@@ -57,9 +57,7 @@ export const mintETH = async (req: Request, res: Response) => {
       .on("transactionHash", function (hash) {
         console.log(hash);
       })
-      .on("receipt", function (receipt) {})
       .on("confirmation", function (confirmationNumber, receipt) {
-        console.log(receipt);
         res.status(200).json({
           message: "Minting done for ETK. Please check your balance!",
         });
@@ -109,9 +107,7 @@ export const mintBSC = async (req: Request, res: Response) => {
       .on("transactionHash", function (hash) {
         console.log(hash);
       })
-      .on("receipt", function (receipt) {})
       .on("confirmation", function (confirmationNumber, receipt) {
-        console.log(receipt);
         res.status(200).json({
           message: "Minting done for BTK. Please check your balance!",
         });

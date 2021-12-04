@@ -100,35 +100,51 @@ const BridgeContainer: React.FC = () => {
     }));
 
   const ethBurnBscMint = async () => {
-    const txHash = await approveETKBurn(inputValue);
-    console.log(txHash);
-    await Axios.post("/mint-bsc", {
-      txHash: txHash.transactionHash,
-    });
-    toast.success(
-      "Minted BTK successfully! Please check the BTK balance on binance testnet",
-      {
+    try {
+      const txHash = await approveETKBurn(inputValue);
+      console.log(txHash);
+      await Axios.post("/mint-bsc", {
+        txHash: txHash.transactionHash,
+      });
+      toast.success(
+        "Minted BTK successfully! Please check the BTK balance on binance testnet",
+        {
+          theme: "dark",
+          autoClose: 1500,
+          closeOnClick: true,
+        }
+      );
+    } catch (err) {
+      toast.error((err as any).message, {
         theme: "dark",
         autoClose: 1500,
         closeOnClick: true,
-      }
-    );
+      });
+    }
   };
 
   const bscBurnEthMint = async () => {
-    const txHash = await approveBTKBurn(inputValue);
-    console.log(txHash);
-    await Axios.post("/mint-eth", {
-      txHash: txHash.transactionHash,
-    });
-    toast.success(
-      "Minted ETK successfully! Please check the BTK balance on rinkeby testnet",
-      {
+    try {
+      const txHash = await approveBTKBurn(inputValue);
+      console.log(txHash);
+      await Axios.post("/mint-eth", {
+        txHash: txHash.transactionHash,
+      });
+      toast.success(
+        "Minted ETK successfully! Please check the BTK balance on rinkeby testnet",
+        {
+          theme: "dark",
+          autoClose: 1500,
+          closeOnClick: true,
+        }
+      );
+    } catch (err) {
+      toast.error((err as any).message, {
         theme: "dark",
         autoClose: 1500,
         closeOnClick: true,
-      }
-    );
+      });
+    }
   };
 
   // click handler for initializing the swapping
