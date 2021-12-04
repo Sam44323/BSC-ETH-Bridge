@@ -48,17 +48,16 @@ const burnMinterMethod = async (
       from: account.address,
       gas: "1000000",
     })
-    .on("transactionHash", function (hash) {
+    .once("transactionHash", function (hash) {
       console.log(hash);
     })
-    .on("confirmation", function () {
+    .once("confirmation", function () {
       logger.info("✅: Minting is done! ");
-      res.status(200).json({
+      return res.status(200).json({
         message: `Minting done for ${target}. Please check your balance!`,
       });
-      return;
     })
-    .on("error", (error) => {
+    .once("error", (error) => {
       console.log(error.message);
       return new Error("error");
     });
@@ -92,7 +91,7 @@ export const mintETH = async (req: Request, res: Response) => {
       from: account.address,
     });
 
-    await burnMinterMethod(
+    burnMinterMethod(
       res,
       "ETK",
       ethBridge,
@@ -101,6 +100,7 @@ export const mintETH = async (req: Request, res: Response) => {
       bscBridgeNonce,
       account
     );
+    return;
   } catch (err: any) {
     logger.error(`Can't mint the tokens!: ${err.message}`);
     res.status(500).json({
