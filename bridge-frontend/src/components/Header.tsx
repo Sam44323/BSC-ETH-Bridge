@@ -13,10 +13,18 @@ const tokenArray = [
   process.env.REACT_APP_BTK_TOKEN,
 ];
 
+/**
+ *
+ * @returns the header container with wallet connect, address display and balances
+ */
+
 const Header: React.FC = () => {
-  const [accountData, setAccountData] = React.useState<any>(null);
+  const [accountData, setAccountData] = React.useState<any>(null); // storing account data
 
   const { account, activateBrowserWallet, chainId } = useEthers();
+
+  // storing the balance shown in the header
+
   let balance = useTokenBalance(
     chainId === 4 ? tokenArray[0] : tokenArray[1],
     account
