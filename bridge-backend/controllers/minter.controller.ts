@@ -33,17 +33,42 @@ const amountFetcher = async (txHash: string, web3: Web3) => {
 export const mintETH = async (req: Request, res: Response) => {
   try {
     const { txHash } = req.body;
-    console.log(txHash);
-    setTimeout(() => logger.info("Waiting for block to be added!"), 3000);
+    const account = await getAdminAccount("BSC");
+    const [ethBridge, bscBridge] = await getContracts();
+    logger.info(`ℹ: txHash for burning BTK on binance: ${txHash}`);
+
     const [burnedAmount, recipient] = await amountFetcher(
       txHash,
       getWeb3("BSC")
     );
     console.log(burnedAmount);
-
-    res.status(200).json({
-      message: "Minting in progress!",
+    logger.info(`✅:  Amount of BTK burned is ${burnedAmount}`);
+    logger.info(`✅:  Minting for ${burnedAmount} ETK in progress`);
+    const bscBridgeNonce = await bscBridge.methods.getNonce().call({
+      from: account.address,
     });
+
+    ethBridge.methods
+      .mint(recipient, burnedAmount.toString(), bscBridgeNonce)
+      .send({
+        from: account.address,
+        gas: "1000000",
+      })
+      .on("transactionHash", function (hash) {
+        console.log(hash);
+      })
+      .on("receipt", function (receipt) {})
+      .on("confirmation", function (confirmationNumber, receipt) {
+        console.log(receipt);
+        res.status(200).json({
+          message: "Minting done for ETK. Please check your balance!",
+        });
+        return;
+      })
+      .on("error", (error) => {
+        console.log(error.message);
+        return new Error("error");
+      });
   } catch (err: any) {
     logger.error(`Can't mint the tokens!: ${err.message}`);
     res.status(500).json({
