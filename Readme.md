@@ -1,6 +1,9 @@
 # BSC - ETH Bridge
 
 ![Solidity](https://img.shields.io/badge/-Solidity-333333?style=for-the-badge&logo=solidity&logoColor=61dbfb)
+![Yarn](https://img.shields.io/badge/-Yarn-333333?style=for-the-badge&logo=yarn&logoColor=61dbfb)
+![Git](https://img.shields.io/badge/-Git-333333?style=for-the-badge&logo=git&logoColor=61dbfb)
+![Ts-node](https://img.shields.io/badge/-Tsnode-333333?style=for-the-badge&logo=ts-node&logoColor=61dbfb)
 ![Binance](https://img.shields.io/badge/-Binance-333333?style=for-the-badge&logo=binance&logoColor=61dbfb)
 ![Ethereum](https://img.shields.io/badge/-Ethereum-333333?style=for-the-badge&logo=ethereum&logoColor=61dbfb)
 ![React](https://img.shields.io/badge/-React-333333?style=for-the-badge&logo=react&logoColor=61dbfb)
@@ -25,6 +28,12 @@
 ---
 
 # **Tech-stack**
+
+### Prerequisites
+
+- Git
+- Yarn
+- Npx
 
 ### **Bridge-Contracts Folder**
 
