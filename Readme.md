@@ -153,37 +153,7 @@ yarn build
 
 ---
 
-### **Bridge-Frontend Folder**
-
----
-
-**Install the dependencies**
-
-```bash
-yarn
-```
-
-**Start the dev server**
-
-```bash
-yarn start
-```
-
-**Running tests for components**
-
-```bash
-yarn test
-```
-
-**Create a prod build**
-
-```bash
-yarn build
-```
-
----
-
-### **Bridge-Frontend Folder**
+### **Bridge-Backend Folder**
 
 ---
 
