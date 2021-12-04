@@ -2,6 +2,8 @@
 
 **This repo contains the entire bridging app from frontend to the backend and surely the contracts**
 
+<img src="./img/example.png"/>
+
 ---
 
 # **Tech-stack**
