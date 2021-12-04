@@ -3,6 +3,7 @@ import Web3 from "web3";
 import logger from "../utils/logger";
 import { getWeb3 } from "../utils/web3";
 import { getContracts } from "../utils/contracts";
+import { getAdminAccount } from "../utils/adminAccount";
 
 // UTIL FUNCTIONS
 
@@ -61,6 +62,8 @@ export const mintETH = async (req: Request, res: Response) => {
 export const mintBSC = async (req: Request, res: Response) => {
   try {
     const { txHash } = req.body;
+    const account = await getAdminAccount();
+    console.log(account);
     const [ethBridge, bscBridge] = await getContracts();
     logger.info(`ℹ: txHash for burning ETK on ethereum: ${txHash}`);
     setTimeout(() => {}, 3000);
@@ -71,7 +74,9 @@ export const mintBSC = async (req: Request, res: Response) => {
     logger.info(`✅:  Amount of ETK burned is ${burnedAmount}`);
     logger.info(`✅:  Minting for ${burnedAmount} BTK in progress`);
 
-    const hash = bscBridge.methods.getNonce().call();
+    const hash = await bscBridge.methods.getNonce().call({
+      from: account.address,
+    });
     console.log(hash);
 
     res.status(200).json({
