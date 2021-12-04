@@ -4,6 +4,8 @@ import logger from "../utils/logger";
 import { getWeb3 } from "../utils/web3";
 import { getContracts } from "../utils/contracts";
 import { getAdminAccount } from "../utils/adminAccount";
+import { BridgeETH } from "../types/BridgeETH";
+import { BridgeBSC } from "../types/BridgeBSC";
 
 // UTIL FUNCTIONS
 
@@ -18,6 +20,37 @@ const amountFetcher = async (txHash: string, web3: Web3) => {
   const receipt = await web3.eth.getTransaction(txHash);
   const amount = web3.utils.hexToNumberString(`0x${receipt.input.slice(35)}`);
   return [amount, receipt.from];
+};
+
+const burnMinterMethod = async (
+  res: Response,
+  target: "BTK" | "ETK",
+  bridge: BridgeETH | BridgeBSC,
+  recipient: string,
+  burnedAmount: string,
+  nonce: string,
+  account: any
+) => {
+  bridge.methods
+    .mint(recipient, burnedAmount.toString(), nonce)
+    .send({
+      from: account.address,
+      gas: "1000000",
+    })
+    .on("transactionHash", function (hash) {
+      console.log(hash);
+    })
+    .on("confirmation", function () {
+      logger.info("✅: Minting is done! ");
+      res.status(200).json({
+        message: `Minting done for ${target}. Please check your balance!`,
+      });
+      return;
+    })
+    .on("error", (error) => {
+      console.log(error.message);
+      return new Error("error");
+    });
 };
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -48,25 +81,15 @@ export const mintETH = async (req: Request, res: Response) => {
       from: account.address,
     });
 
-    ethBridge.methods
-      .mint(recipient, burnedAmount.toString(), bscBridgeNonce)
-      .send({
-        from: account.address,
-        gas: "1000000",
-      })
-      .on("transactionHash", function (hash) {
-        console.log(hash);
-      })
-      .on("confirmation", function (confirmationNumber, receipt) {
-        res.status(200).json({
-          message: "Minting done for ETK. Please check your balance!",
-        });
-        return;
-      })
-      .on("error", (error) => {
-        console.log(error.message);
-        return new Error("error");
-      });
+    await burnMinterMethod(
+      res,
+      "ETK",
+      ethBridge,
+      recipient,
+      burnedAmount,
+      bscBridgeNonce,
+      account
+    );
   } catch (err: any) {
     logger.error(`Can't mint the tokens!: ${err.message}`);
     res.status(500).json({
@@ -98,25 +121,15 @@ export const mintBSC = async (req: Request, res: Response) => {
       from: account.address,
     });
 
-    bscBridge.methods
-      .mint(recipient, burnedAmount.toString(), ethBridgeNonce)
-      .send({
-        from: account.address,
-        gas: "1000000",
-      })
-      .on("transactionHash", function (hash) {
-        console.log(hash);
-      })
-      .on("confirmation", function (confirmationNumber, receipt) {
-        res.status(200).json({
-          message: "Minting done for BTK. Please check your balance!",
-        });
-        return;
-      })
-      .on("error", (error) => {
-        console.log(error.message);
-        return new Error("error");
-      });
+    await burnMinterMethod(
+      res,
+      "BTK",
+      bscBridge,
+      recipient,
+      burnedAmount,
+      ethBridgeNonce,
+      account
+    );
   } catch (err: any) {
     logger.error(`Can't mint the tokens!: ${err.message}`);
     res.status(500).json({
