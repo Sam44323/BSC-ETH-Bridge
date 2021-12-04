@@ -23,7 +23,6 @@ const amountFetcher = async (txHash: string, web3: Web3) => {
 };
 
 /**
- *
  * @param res takes the response object for express
  * @param target the target token data for displaying in the logger and returning in response
  * @param bridge the bridge container for calling the functions on them
