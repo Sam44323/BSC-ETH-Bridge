@@ -6,6 +6,15 @@
 
 ---
 
+**These are the things that you'll get:**
+
+- **ETK (Token on ethereum chain)**
+- **BTK (Token on binance chain)**
+- **ETHBridge (Token on ethereum chain)**
+- **BSCBridge (Token on binance chain)**
+
+---
+
 # **Tech-stack**
 
 ### **Bridge-Contracts Folder**
