@@ -76,7 +76,7 @@ export const mintETH = async (req: Request, res: Response) => {
 };
 
 /**
- * method for starting the minting process on binance
+ * method for starting the minting process on binance-chain
  * @param req the request object
  * @param res the response object
  */
