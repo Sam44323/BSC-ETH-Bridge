@@ -5,7 +5,7 @@ dotenv.config({
   path: ".env",
 });
 
-export const getAdminAccount = async () => {
-  const web3 = getWeb3("ETH");
+export const getAdminAccount = async (provider: "ETH" | "BSC") => {
+  const web3 = getWeb3(provider);
   return web3.eth.accounts.privateKeyToAccount(process.env.PRIVATE_KEY!);
 };

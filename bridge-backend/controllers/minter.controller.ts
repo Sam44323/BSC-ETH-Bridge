@@ -16,8 +16,7 @@ import { getAdminAccount } from "../utils/adminAccount";
 
 const amountFetcher = async (txHash: string, web3: Web3) => {
   const receipt = await web3.eth.getTransaction(txHash);
-  let amount = web3.utils.hexToNumberString(`0x${receipt.input.slice(35)}`);
-  amount = web3.utils.fromWei(amount, "ether");
+  const amount = web3.utils.hexToNumberString(`0x${receipt.input.slice(35)}`);
   return [amount, receipt.from];
 };
 
@@ -62,30 +61,45 @@ export const mintETH = async (req: Request, res: Response) => {
 export const mintBSC = async (req: Request, res: Response) => {
   try {
     const { txHash } = req.body;
-    const account = await getAdminAccount();
-    console.log(account);
+    const account = await getAdminAccount("BSC");
     const [ethBridge, bscBridge] = await getContracts();
     logger.info(`ℹ: txHash for burning ETK on ethereum: ${txHash}`);
-    setTimeout(() => {}, 3000);
+    setTimeout(() => {}, 10000);
     const [burnedAmount, recipient] = await amountFetcher(
       txHash,
       getWeb3("ETH")
     );
     logger.info(`✅:  Amount of ETK burned is ${burnedAmount}`);
     logger.info(`✅:  Minting for ${burnedAmount} BTK in progress`);
-
-    const hash = await bscBridge.methods.getNonce().call({
+    const ethBridgeNonce = await ethBridge.methods.getNonce().call({
       from: account.address,
     });
-    console.log(hash);
 
-    res.status(200).json({
-      message: "Minting in progress!",
-    });
+    bscBridge.methods
+      .mint(recipient, burnedAmount.toString(), ethBridgeNonce)
+      .send({
+        from: account.address,
+        gas: "1000000",
+      })
+      .on("transactionHash", function (hash) {
+        console.log(hash);
+      })
+      .on("receipt", function (receipt) {})
+      .on("confirmation", function (confirmationNumber, receipt) {
+        console.log(receipt);
+        res.status(200).json({
+          message: "Minting done for BTK. Please check your balance!",
+        });
+        return;
+      })
+      .on("error", (error) => {
+        console.log(error.message);
+        return new Error("error");
+      });
   } catch (err: any) {
     logger.error(`Can't mint the tokens!: ${err.message}`);
     res.status(500).json({
-      message: "Can't mint the tokens!",
+      message: "Error while minting. Please try again!",
     });
   }
 };
