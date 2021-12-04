@@ -190,7 +190,11 @@ yarn generate
 
 **Utility Script Inside Bridge-Contracts**
 
+---
+
 _Note: The following script copies the abis from contracts folder to backend and frontend respectively. When you want to generate types based on the abis, make sure to extract out the json file_
+
+---
 
 **Copying the abi's**
 
