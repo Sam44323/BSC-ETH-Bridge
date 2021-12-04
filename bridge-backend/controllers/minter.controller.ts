@@ -22,6 +22,17 @@ const amountFetcher = async (txHash: string, web3: Web3) => {
   return [amount, receipt.from];
 };
 
+/**
+ *
+ * @param res takes the response object for express
+ * @param target the target token data for displaying in the logger and returning in response
+ * @param bridge the bridge container for calling the functions on them
+ * @param recipient the recipient that will receive the transferred token
+ * @param burnedAmount the amount to mint
+ * @param nonce the nonce value for other chain to restrict double spending
+ * @param account the admin account from which the transaction will be processing
+ */
+
 const burnMinterMethod = async (
   res: Response,
   target: "BTK" | "ETK",
