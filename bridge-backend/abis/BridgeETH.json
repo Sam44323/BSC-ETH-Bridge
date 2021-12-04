@@ -1,7 +1,4 @@
 {
-  "_format": "hh-sol-artifact-1",
-  "contractName": "BridgeETH",
-  "sourceName": "contracts/bridge/BridgeETH.sol",
   "abi": [
     {
       "inputs": [

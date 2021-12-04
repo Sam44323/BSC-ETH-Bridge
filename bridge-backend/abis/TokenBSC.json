@@ -1,7 +1,4 @@
 {
-  "_format": "hh-sol-artifact-1",
-  "contractName": "TokenBSC",
-  "sourceName": "contracts/Tokens/TokenBSC.sol",
   "abi": [
     {
       "inputs": [],

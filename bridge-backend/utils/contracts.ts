@@ -1,13 +1,21 @@
 import { Contracts } from "./config";
 import { getWeb3 } from "./web3";
+import { BridgeBSC } from "../types/BridgeBSC";
+import { BridgeETH } from "../types/BridgeETH";
 
 export const getContracts = async () => {
   const ethWeb = getWeb3("ETH");
   const bscWeb = getWeb3("BSC");
   console.log(Contracts[0].address, Contracts[1].address);
   const contractInstances = [
-    new ethWeb.eth.Contract(Contracts[0].abi, Contracts[0].address),
-    new bscWeb.eth.Contract(Contracts[1].abi, Contracts[1].address),
+    new ethWeb.eth.Contract(
+      Contracts[0].abi,
+      Contracts[0].address
+    ) as unknown as BridgeETH,
+    new bscWeb.eth.Contract(
+      Contracts[1].abi,
+      Contracts[1].address
+    ) as unknown as BridgeETH,
   ];
 
   return contractInstances;
