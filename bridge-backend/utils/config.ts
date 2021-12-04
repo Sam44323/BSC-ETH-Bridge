@@ -1,7 +1,7 @@
-import { abi as BTKToken } from "../abis/Tokens/TokenBSC.sol/TokenBSC.json";
-import { abi as BSCBridge } from "../abis/bridge/BridgeBSC.sol/BridgeBSC.json";
-import { abi as ETKToken } from "../abis/Tokens/TokenETH.sol/TokenETH.json";
-import { abi as ETHBridge } from "../abis/bridge/BridgeETH.sol/BridgeETH.json";
+import { abi as BTKToken } from "../abis/TokenBSC.json";
+import { abi as BSCBridge } from "../abis/BridgeBSC.json";
+import { abi as ETKToken } from "../abis/TokenETH.json";
+import { abi as ETHBridge } from "../abis/BridgeETH.json";
 import dotenv from "dotenv";
 
 dotenv.config({
