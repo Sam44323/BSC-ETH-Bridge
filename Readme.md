@@ -31,9 +31,9 @@
 
 ### Prerequisites
 
-- Git
-- Yarn
-- Npx
+- git
+- yarn
+- npx
 
 ### **Bridge-Contracts Folder**
 
