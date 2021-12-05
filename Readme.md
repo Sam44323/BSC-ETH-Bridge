@@ -22,8 +22,8 @@
 
 - **ETK (Token on ethereum chain)**
 - **BTK (Token on binance chain)**
-- **ETHBridge (Token on ethereum chain)**
-- **BSCBridge (Token on binance chain)**
+- **ETHBridge (Bridge on ethereum chain)**
+- **BSCBridge (Bridge on binance chain)**
 
 ---
 
