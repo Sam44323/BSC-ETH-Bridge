@@ -5,9 +5,6 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 // the base implementation contract for the bridge-contract
 
-/*
-Bug: Update the minting logic as the current way is wrong
- */
 
 contract Bridge {
     address public admin;
